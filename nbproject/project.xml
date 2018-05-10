@@ -17,6 +17,10 @@
                 </confElem>
                 <confElem>
                     <name>Release</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>NewConfiguration</name>
                     <type>1</type>
                 </confElem>
             </confList>
