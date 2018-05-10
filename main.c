@@ -3,9 +3,10 @@
 #include <string.h>
 #include <time.h>
 #include <sys/time.h>
-#include "Latex.h"
-#include "Interfaz.h"
+//#include "Latex.h"
+//#include "Interfaz.h"
 #include "Tabla.h"
+#include "AlgoritmoSimplex.h"
 
 #define PRINT(x) (printf("%s", x))
 #define LENGHT(x) (sizeof(x) / sizeof((x)[0]))
@@ -19,7 +20,7 @@ int main(int argc, char** argv) {
 
     
     // IniciarInterfaz(argc, argv);
-    
+    AlgoritmoSimplex();
 
     
     printf("\n\nFinal \n\n");

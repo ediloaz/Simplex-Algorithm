@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>AlgoritmoSimplex.h</itemPath>
       <itemPath>Interfaz.h</itemPath>
       <itemPath>Latex.h</itemPath>
       <itemPath>Tabla.h</itemPath>
@@ -39,12 +40,11 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <architecture>2</architecture>
           <commandlineTool>gcc </commandlineTool>
-          <commandLine>-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -w </commandLine>
-          <useLinkerLibraries>false</useLinkerLibraries>
         </cTool>
       </compileType>
+      <item path="AlgoritmoSimplex.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">
@@ -76,23 +76,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
+      <item path="AlgoritmoSimplex.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Latex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Tabla.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="main.c" ex="false" tool="0" flavor2="0">
-      </item>
-    </conf>
-    <conf name="NewConfiguration" type="1">
-      <toolsSet>
-        <compilerSet>default</compilerSet>
-        <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
-      </toolsSet>
-      <compileType>
-      </compileType>
       <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">

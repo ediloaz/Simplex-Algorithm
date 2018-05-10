@@ -22,14 +22,6 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/libSimplex.so
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
 CND_PACKAGE_NAME_Release=libSimplex.so.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/libSimplex.so.tar
-# NewConfiguration configuration
-CND_PLATFORM_NewConfiguration=GNU-Linux
-CND_ARTIFACT_DIR_NewConfiguration=dist/NewConfiguration/GNU-Linux
-CND_ARTIFACT_NAME_NewConfiguration=simplex
-CND_ARTIFACT_PATH_NewConfiguration=dist/NewConfiguration/GNU-Linux/simplex
-CND_PACKAGE_DIR_NewConfiguration=dist/NewConfiguration/GNU-Linux/package
-CND_PACKAGE_NAME_NewConfiguration=simplex.tar
-CND_PACKAGE_PATH_NewConfiguration=dist/NewConfiguration/GNU-Linux/package/simplex.tar
 #
 # include compiler specific variables
 #
