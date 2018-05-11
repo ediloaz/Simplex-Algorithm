@@ -10,7 +10,7 @@
 int n1, n2, n3, n4;
 
 int columna_actual;     // Posición J de la columna escogida para el cálculo
-int pivote;             // Posición I del Pivote escogido de esa columna
+//int pivote;             // Posición I del Pivote escogido de esa columna
 int x = 25, y = 10;               // x: Cantidad de filas | y: Cantidad de columnas
 float tabla[25][10];        // 
 

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  6 MAY 2018 14:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  10 MAY 2018 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**file.tex
-(./file.tex
+**LATEX.tex
+(./LATEX.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -865,8 +865,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen172
 \Gm@layoutvoffset=\dimen173
 \Gm@dimlist=\toks35
-) (./file.aux)
-\openout1 = `file.aux'.
+) (./LATEX.aux)
+\openout1 = `LATEX.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
@@ -1010,19 +1010,19 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 
-] (./file.aux) ) 
+] (./LATEX.aux) ) 
 Here is how much of TeX's memory you used:
- 22878 strings out of 493029
- 587784 string characters out of 6136234
+ 22879 strings out of 493029
+ 587797 string characters out of 6136234
  720264 words of memory out of 5000000
  26004 multiletter control sequences out of 15000+600000
  24432 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,83p,725b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texm
-f/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb>
-Output written on file.pdf (1 page, 64853 bytes).
+ 55i,8n,83p,726b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/tex
+mf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr1
+2.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb>
+Output written on LATEX.pdf (1 page, 64211 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream

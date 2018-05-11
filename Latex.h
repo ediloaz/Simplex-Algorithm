@@ -6,16 +6,28 @@
 #define LATEX_H
 
 
-
-#define NAME_OF_TEX_FILE "file.tex"
-#define NAME_OF_PDF_FILE "file.pdf"
+#define PATH_OF_TEX_FILE "LATEX.tex"
+#define PATH_OF_PDF_FILE "LATEX.pdf"
+#define OUT_PATH "./Salida/"
 #define RED  "\x1B[31m"
 #define GRN  "\x1B[32m"
 #define BCK  "\x1B[0m"
 
 
 
-
+void MoveFiles(){
+//    char command[] = "mv -v ./";
+//    char blank[] = " ";
+//    strcat(command, PATH_OF_TEX_FILE);
+//    strcat(command, blank);
+//    strcat(command, OUT_PATH);
+//    strcat(command, PATH_OF_TEX_FILE);
+//    system(command);
+    system("mv -v ./LATEX.pdf ./Salida/LATEX.pdf");
+    system("mv -v ./LATEX.tex ./Salida/LATEX.tex");
+    system("mv -v ./LATEX.log ./Salida/LATEX.log");
+    system("mv -v ./LATEX.aux ./Salida/LATEX.aux");
+}
 
 
 // - - - - - - - - - - - - - - - - 
@@ -23,7 +35,7 @@
 // - - - PRINT TABLES  - - - - - - 
 void Latex_Table_Start(int N){
     FILE * tex_file;
-    tex_file = fopen(NAME_OF_TEX_FILE, "a+");
+    tex_file = fopen(PATH_OF_TEX_FILE, "a+");
     fputs("\\begin{center} \n", tex_file);          // \begin{center}
     fputs("\\begin{tabular}{", tex_file);
     for (int i=0 ; i<N ; i++) fputs("|c", tex_file);
@@ -44,7 +56,7 @@ void Latex_Table_Start(int N){
 
 void Latex_Start(){
     FILE * tex_file;
-    tex_file = fopen(NAME_OF_TEX_FILE, "w");
+    tex_file = fopen(PATH_OF_TEX_FILE, "w");
     fputs("% A.B.B. Dinámicos vs. A.B.B. Greedy \n", tex_file);
     fputs("% Written by Edisson López \n", tex_file);
     fputs("% Contact: ediloaz@gmail.com \n", tex_file);
@@ -86,7 +98,7 @@ void Latex_Start(){
 
 void Latex_End(){
     FILE * tex_file;
-    tex_file = fopen(NAME_OF_TEX_FILE, "a+");
+    tex_file = fopen(PATH_OF_TEX_FILE, "a+");
     fputs("\\end{document}\n", tex_file);
     fputs("% } DOCUMENT \n", tex_file);
     fputs("% Última línea del documento", tex_file);
@@ -96,13 +108,13 @@ void Latex_End(){
 
 void GeneratePDF(){
     char command[] = "pdflatex ";
-    strcat(command, NAME_OF_TEX_FILE);
+    strcat(command, PATH_OF_TEX_FILE);
     system(command);
 }
 
 void OpenPDF(){
     char command[] = "xdg-open ";
-    strcat(command, NAME_OF_PDF_FILE);
+    strcat(command, PATH_OF_PDF_FILE);
     system(command);
 }
 
@@ -111,6 +123,7 @@ void Latex(){
     Latex_End();
     GeneratePDF();
     OpenPDF();
+    MoveFiles();
 }
 
 #endif /* LATEX_H */
