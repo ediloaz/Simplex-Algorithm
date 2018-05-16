@@ -7,6 +7,7 @@
       <itemPath>AlgoritmoSimplex.h</itemPath>
       <itemPath>Interfaz.h</itemPath>
       <itemPath>Latex.h</itemPath>
+      <itemPath>MatricesDePrueba.h</itemPath>
       <itemPath>Tabla.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -49,6 +50,8 @@
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MatricesDePrueba.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Tabla.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
@@ -81,6 +84,8 @@
       <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MatricesDePrueba.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tabla.h" ex="false" tool="3" flavor2="0">
       </item>

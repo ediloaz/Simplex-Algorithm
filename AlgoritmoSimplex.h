@@ -3,38 +3,58 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+//#include "MatricesDePrueba.h"
 
-
+#define reset     "\x1B[0m"
+#define bold      "\x1B[1m"
 
 // Variables globales
 // Variables de holgura, de exceso y artificiales
+//int cantidad_variables = 2;
+//int cantidad_holguras = 1;
+//int cantidad_excesos =1;
+//int cantidad_artificiales = 2;
+// Variables de holgura, de exceso y artificiales
 int cantidad_variables = 2;
-int cantidad_holguras = 1;
+int cantidad_holguras = 2;
 int cantidad_excesos =1;
-int cantidad_artificiales = 2;
+int cantidad_artificiales = 1;
+
+
 // Información de la matriz
 const int FilasMatriz = 5;
 const int ColumnasMatriz = 8;
 float Matriz[5][8];
 // Otros datos
-int i,j;
+//int i,j;
 int NumeroFinalizar = 0;
 int numero_tabla_intermedia = 1;
-bool maximizar = true;     // si es 1 es maximizar o si es -1 es minimizar
+bool maximizar = false;     // si es 1 es maximizar o si es -1 es minimizar
 
+void BOLD(){
+    printf("%s", bold);
+}
+
+void RESET(){
+    printf("%s", reset);
+}
 
 void PrintMatriz(){ /* Función donde se ejecuta la lógica del programa */
     printf("Z \t x1 \t x2 \t s1 \t e1 \t a1 \t a2 \t X\n");
-    for (i=0;i<FilasMatriz;i++)
+    for (int i=0;i<FilasMatriz;i++)
     {
-       for(j=0;j<ColumnasMatriz;j++)
+        if (i==2) BOLD();
+       for(int j=0;j<ColumnasMatriz;j++)
         {
         printf("%.1f \t",Matriz[i][j]);
         }
         printf("\n");
     }
+    RESET();
     printf("\n");
 }
+
+
 
 void PrintTablaInicial(){
     printf("Tabla inicial:\n");
@@ -54,12 +74,12 @@ void PrintTablaIntermedia(){
 }
 
 
-// Fábrica de Refrescos BebiCo
-void MatrizDePrueba1(){
+// Fábrica de La Agricultura
+void MatrizDePrueba2(){
     //primer Fila, numeros de la funcion objetivos
     Matriz[0][0] = 1;
-    Matriz[0][1] = -2;
-    Matriz[0][2] = -3;
+    Matriz[0][1] = -10000;
+    Matriz[0][2] = -3000;
     Matriz[0][3] = 0;
     Matriz[0][4] = 0;
     Matriz[0][5] = 0;
@@ -71,37 +91,39 @@ void MatrizDePrueba1(){
     Matriz[1][2] = 0;
     Matriz[1][3] = 0;
     Matriz[1][4] = 0;
-    Matriz[1][5] = -1;
-    Matriz[1][6] = -1;
+    Matriz[1][5] = 0;
+    Matriz[1][6] = 1;
     Matriz[1][7] = 0;
     //Tercer Fila, normal
     Matriz[2][0] = 0;
-    Matriz[2][1] = 0.5;
-    Matriz[2][2] = 0.25;
+    Matriz[2][1] = 1;
+    Matriz[2][2] = 1;
     Matriz[2][3] = 1;
     Matriz[2][4] = 0;
     Matriz[2][5] = 0;
     Matriz[2][6] = 0;
-    Matriz[2][7] = 4;
+    Matriz[2][7] = 7;
     //Cuarta Fila, normal
     Matriz[3][0] = 0;
-    Matriz[3][1] = 1;
-    Matriz[3][2] = 3;
+    Matriz[3][1] = 10;
+    Matriz[3][2] = 4;
     Matriz[3][3] = 0;
-    Matriz[3][4] = -1;
-    Matriz[3][5] = 1;
+    Matriz[3][4] = 1;
+    Matriz[3][5] = 0;
     Matriz[3][6] = 0;
-    Matriz[3][7] = 20;
+    Matriz[3][7] = 40;
     //Cuarta Fila, normal
     Matriz[4][0] = 0;
-    Matriz[4][1] = 1;
+    Matriz[4][1] = 0;
     Matriz[4][2] = 1;
     Matriz[4][3] = 0;
     Matriz[4][4] = 0;
-    Matriz[4][5] = 0;
+    Matriz[4][5] = -1;
     Matriz[4][6] = 1;
-    Matriz[4][7] = 10;
+    Matriz[4][7] = 3;
 }
+
+
 
 bool ExistenMs(){
     for (int j = 0 ; j < ColumnasMatriz ; j++){
@@ -157,56 +179,137 @@ bool ExisteColumnaCandidata(){
 //    }
 //}
 
-
+// Hay columnas que quedan con valores muy, muy decimalizados, por ejempo 0.00000000000000341, y esto provoca que sea mayor a 0, cuando no debe ser así
 int ColumnaCandidata(){            // i={0,1}
     float numero_candidato  = 0;
     int columna_candidata = -1;
-    if(ExistenMs()){                    // Si existen todavía Ms, debe sacarlos
-        int i = 1;
-        for (int j=1 ; j< ColumnasMatriz-1 ; j++){
-            if (Matriz[i][j] > 0){       // Es negativo
-                numero_candidato  = Matriz[i][j];
-                columna_candidata = j;
-                
+    int i = -1;
+    if(ExistenMs()){
+        printf("Sí existen Ms\n");
+        i = 1;
+        if (maximizar){
+            printf("Sí existen Ms | MAX\n");
+            for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+                if (((int)(100*Matriz[i][j]) < (int)(100*numero_candidato))){       // Es negativo
+                    numero_candidato  = Matriz[i][j];
+                    columna_candidata = j;
+                    printf("Sí existen Ms | MAX | Candidato: %d (%f)\n", j, numero_candidato);
+                }
+            }
+            if (columna_candidata == -1){ // Sí habían Ms pero ninguna cumplía ser menor o mayor a 0. Entonces se busca si en la fila 0 cumple alguno
+                i = 0;
+                for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+                    if (((int)(100*Matriz[i][j]) < (int)(100*numero_candidato)) && Matriz[1][j] == 0.0){       // Es negativo
+                        numero_candidato  = Matriz[i][j];
+                        columna_candidata = j;
+                    }
+                }   
+            }
+        }else if(!maximizar){
+            printf("Sí existen Ms | MIN\n");
+            for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+                if ((int)(100*Matriz[i][j]) > (int)(100*numero_candidato)){       // Es positivo
+                    numero_candidato  = Matriz[i][j];
+                    columna_candidata = j;
+//                    printf("Sí existen Ms | MIN | Candidato: %d (%d)\n", j, (int)(100*Matriz[i][j]));
+                }else if(((int)(100*Matriz[i][j]) == (int)(100*numero_candidato)) && (int)(100*numero_candidato)!=0){ // Empate de Ms, revisar el número acompañante
+                    printf("Sí existen Ms | MIN | Candidato: %d empate con %d \n", j, columna_candidata);
+                    if (Matriz[0][j] > Matriz[0][columna_candidata]){       // Es positivo
+                        numero_candidato  = Matriz[i][j];
+                        columna_candidata = j;
+                        printf("Sí existen Ms | MIN | Candidato: %d empate con %d CAMBIADA\n", j, columna_candidata);
+                    }
+                }
+            }
+            if (columna_candidata == -1){ // Sí habían Ms pero ninguna cumplía ser menor o mayor a 0. Entonces se busca si en la fila 0 cumple alguno
+                i = 0;
+                for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+                    if (Matriz[i][j] > numero_candidato && Matriz[1][j] == 0.0){       // Es negativo
+                        numero_candidato  = Matriz[i][j];
+                        columna_candidata = j;
+                    }
+                }   
             }
         }
-    }else{                              // Ya no existen Ms
-        int i = 0;
+    }else{  
+        printf("NO existen Ms\n");
+        i = 0;
         if (maximizar){
             for (int j=1 ; j< ColumnasMatriz-1 ; j++){
-                if (Matriz[i][j] < numero_candidato){       // Es negativo
+                if (((int)(100*Matriz[i][j]) < (int)(100*numero_candidato))){       // Es negativo
                     numero_candidato  = Matriz[i][j];
                     columna_candidata = j;
                 }
             }
-        }else{
+        }else if(!maximizar){
             for (int j=1 ; j< ColumnasMatriz-1 ; j++){
-                if (Matriz[i][j] > numero_candidato){       // Es positivo
+                if (((int)(100*Matriz[i][j]) > (int)(100*numero_candidato))){       // Es positivo
                     numero_candidato  = Matriz[i][j];
                     columna_candidata = j;
                 }
             }
         }
-        
     }
+    
+    
+
     printf("Columna candidata: %d (%.1f)\n",columna_candidata, numero_candidato);
     return columna_candidata;   
 }
 
+//
+//int ColumnaCandidata(){            // i={0,1}
+//    float numero_candidato  = 0;
+//    int columna_candidata = -1;
+//    if(ExistenMs()){                    // Si existen todavía Ms, debe sacarlos
+//        int i = 1;
+//        for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+//            if (Matriz[i][j] > 0){       // Es negativo
+//                numero_candidato  = Matriz[i][j];
+//                columna_candidata = j;
+//                
+//            }
+//        }
+//    }else{                              // Ya no existen Ms
+//        int i = 0;
+//        if (maximizar){
+//            for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+//                if (Matriz[i][j] < numero_candidato){       // Es negativo
+//                    numero_candidato  = Matriz[i][j];
+//                    columna_candidata = j;
+//                }
+//            }
+//        }else{      // Minimizar
+//            for (int j=1 ; j< ColumnasMatriz-1 ; j++){
+//                if (Matriz[i][j] > numero_candidato){       // Es positivo
+//                    numero_candidato  = Matriz[i][j];
+//                    columna_candidata = j;
+//                }
+//            }
+//        }
+//        
+//    }
+//    printf("Columna candidata: %d (%.1f)\n",columna_candidata, numero_candidato);
+//    return columna_candidata;   
+//}
+//
 
-int EncontrarPivote(int j){
-    int division_menor = 9999;
-    int division_actual;
-    int pivote = -1;
+int EncontrarPivote(int columna_escogida){
+    float division_menor = 9999;
+    float division_actual;
+    int i_pivote = -1;
     for(int i = 2 ; i < FilasMatriz ; i++ ){  //este ciclo va a recorrer todas las filas para encontrar la division menor
-        if (Matriz[i][j] >= 1 ){                //si es mayor o igual a uno, es un pivote candidatos
-            division_actual = Matriz[i][ColumnasMatriz]/Matriz[i][j] ;
+        printf("voy por la fila %d\n",i);
+        if (Matriz[i][columna_escogida] > 0 ){                //si es mayor o igual a uno, es un pivote candidatos
+            division_actual = Matriz[i][ColumnasMatriz-1]/Matriz[i][columna_escogida] ;
             if (division_actual < division_menor){
+                printf("ESCOGÍ la fila %d\n",i);
                 division_menor = division_actual;
-                pivote = i;
+                i_pivote = i;
             }
         }
     }
+    return i_pivote;
 }
 
 void DividirFila(int i, float divisor){
@@ -222,21 +325,27 @@ float EncontrarDivisor(int i, float divisor){
     // Esto fue una prueba, no está bien pensado... 
 }
 
-void CanonizarColumna(int i_pivote, int j){
-//    float divisor;
-//    for(int i = 2 ; i < FilasMatriz ; i++){
-//        if (i != i_pivote){         // Deja en 0 el que no es pivote
-//            divisor = EncontrarDivisor(i, Matriz[i][j]);
-//        }else{                      // deja en 1 el pivote
-//            divisor = (float)pivote;
-//        }
-//        DividirFila(i, divisor);
-//    }
+void CanonizarColumna(int i_pivote, int columna_escogida){
+    float pivote = Matriz[i_pivote][columna_escogida];
+    float multiplicador_escogido;
+    for (int i = 0 ;  i<FilasMatriz ; i++){
+        if (i!=i_pivote){                 // La fila del pivote se cálcula después todas las otras.
+            multiplicador_escogido = -Matriz[i][columna_escogida]/pivote;
+            for (int j=0 ; j<ColumnasMatriz ; j++){
+                Matriz[i][j] = Matriz[i][j] + (multiplicador_escogido*Matriz[i_pivote][j]);
+            }
+        }
+        PrintTablaIntermedia();
+    }
+    multiplicador_escogido = 1/pivote;
+    for (int j=0 ; j<ColumnasMatriz ; j++){
+        Matriz[i_pivote][j] = multiplicador_escogido*Matriz[i_pivote][j];
+    }
 }
 
 void AlgoritmoSimplex(){
     //Llenamos la matriz
-    MatrizDePrueba1();
+    MatrizDePrueba2();
     
     PrintTablaInicial();
        
@@ -245,22 +354,31 @@ void AlgoritmoSimplex(){
     // Canonizar Ms
     if (ExistenMs()) CanonizarMs(posicion_artificiales);
 
+    int i_pivote;
+    int columna_escogida;
+    float pivote;
     // Se realiza el simplex normal
     // Mientras exista una columna candidata hace el simplex
     // Candidata: Si está maximizando y es negativa, ó, si está minimizando y es positiva.
-    while (ExisteColumnaCandidata()){
+    int a=0;
+    while (ExisteColumnaCandidata() && a<10){
+        a++;
         PrintTablaIntermedia();
         // Se busca la columna
-        int j = ColumnaCandidata();
-        if (j==-1) break;                   // terminó
+        columna_escogida = ColumnaCandidata();
+        if (columna_escogida==-1) break;                   // terminó
         // Se busca el pivote (dentro de la columna)
-        int i = EncontrarPivote(j); 
-        if (i==-1) break;                   // Solución no factible
-        // Guarda el valor del pivote
-        CanonizarColumna(i, j);
+        i_pivote = EncontrarPivote(columna_escogida);
+        if (i_pivote==-1) break;                   // Solución no factible
+
+        printf("voy a canonizaaaar %d %d", i_pivote, columna_escogida);
+        CanonizarColumna(i_pivote, columna_escogida);
     }
      
 }
+
+
+
 
 #endif /* ALGORITMOSIMPLEX_H */
 
