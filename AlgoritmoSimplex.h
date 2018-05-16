@@ -10,26 +10,22 @@
 
 // Variables globales
 // Variables de holgura, de exceso y artificiales
-//int cantidad_variables = 2;
-//int cantidad_holguras = 1;
-//int cantidad_excesos =1;
-//int cantidad_artificiales = 2;
-// Variables de holgura, de exceso y artificiales
-int cantidad_variables = 2;
-int cantidad_holguras = 2;
-int cantidad_excesos =1;
-int cantidad_artificiales = 1;
+int cantidad_variables;
+int cantidad_holguras;
+int cantidad_excesos;
+int cantidad_artificiales;
 
 
 // Información de la matriz
-const int FilasMatriz = 5;
-const int ColumnasMatriz = 8;
-float Matriz[5][8];
+int FilasMatriz = 6;
+int ColumnasMatriz = 9;
+//float Matriz[5][8];
+float Matriz[6][9];
 // Otros datos
 //int i,j;
 int NumeroFinalizar = 0;
 int numero_tabla_intermedia = 1;
-bool maximizar = false;     // si es 1 es maximizar o si es -1 es minimizar
+bool maximizar;     // si es 1 es maximizar o si es -1 es minimizar
 
 void BOLD(){
     printf("%s", bold);
@@ -74,8 +70,89 @@ void PrintTablaIntermedia(){
 }
 
 
-// Fábrica de La Agricultura
+// Dakota Modificado ((Para soluciones multiples)
+void MatrizDePrueba3(){
+    maximizar = true;
+    cantidad_variables = 3;
+    cantidad_holguras = 4;
+    cantidad_excesos = 0;
+    cantidad_artificiales = 0;
+    FilasMatriz = 6;
+    ColumnasMatriz = 9;
+
+    //primer Fila, numeros de la funcion objetivos
+    Matriz[0][0] = 1;
+    Matriz[0][1] = -60;
+    Matriz[0][2] = -35;
+    Matriz[0][3] = -20;
+    Matriz[0][4] = 0;
+    Matriz[0][5] = 0;
+    Matriz[0][6] = 0;
+    Matriz[0][7] = 0;
+    Matriz[0][8] = 0;
+    //Segunda Fila, cocientes de M
+        Matriz[1][0] = 0;
+    Matriz[1][1] = 0;
+    Matriz[1][2] = 0;
+    Matriz[1][3] = 0;
+    Matriz[1][4] = 0;
+    Matriz[1][5] = 0;
+    Matriz[1][6] = 0;
+    Matriz[1][7] = 0;
+    Matriz[1][8] = 0;
+    //Tercer Fila, normal
+    Matriz[2][0] = 0;
+    Matriz[2][1] = 8;
+    Matriz[2][2] = 6;
+    Matriz[2][3] = 1;
+    Matriz[2][4] = 1;
+    Matriz[2][5] = 0;
+    Matriz[2][6] = 0;
+    Matriz[2][7] = 0;
+    Matriz[2][8] = 48;
+    //Tercer Fila, normal
+    Matriz[3][0] = 0;
+    Matriz[3][1] = 4;
+    Matriz[3][2] = 2;
+    Matriz[3][3] = 1.5;
+    Matriz[3][4] = 0;
+    Matriz[3][5] = 1;
+    Matriz[3][6] = 0;
+    Matriz[3][7] = 0;
+    Matriz[3][8] = 20;
+    //Cuarta Fila, normal
+    Matriz[4][0] = 0;
+    Matriz[4][1] = 2;
+    Matriz[4][2] = 1.5;
+    Matriz[4][3] = 0.5;
+    Matriz[4][4] = 0;
+    Matriz[4][5] = 0;
+    Matriz[4][6] = 1;
+    Matriz[4][7] = 0;
+    Matriz[4][8] = 8;
+    //Cuarta Fila, normal
+    Matriz[5][0] = 0;
+    Matriz[5][1] = 0;
+    Matriz[5][2] = 1;
+    Matriz[5][3] = 0;
+    Matriz[5][4] = 0;
+    Matriz[5][5] = 0;
+    Matriz[5][6] = 0;
+    Matriz[5][7] = 1;
+    Matriz[5][8] = 5;
+}
+
+
+// Fábrica de La Agricultura ((Tiene Ms)
 void MatrizDePrueba2(){
+    maximizar = true;
+    cantidad_variables = 2;
+    cantidad_holguras = 2;
+    cantidad_excesos =1;
+    cantidad_artificiales = 1;
+    FilasMatriz = 5;
+    ColumnasMatriz = 8;
+
     //primer Fila, numeros de la funcion objetivos
     Matriz[0][0] = 1;
     Matriz[0][1] = -10000;
@@ -124,6 +201,62 @@ void MatrizDePrueba2(){
 }
 
 
+// Fábrica de Refrescos BebiCo (Tiene Ms)
+void MatrizDePrueba1(){
+    maximizar = false;
+    cantidad_variables = 2;
+    cantidad_holguras = 1;
+    cantidad_excesos =1;
+    cantidad_artificiales = 2;
+    FilasMatriz = 5;
+    ColumnasMatriz = 8;
+    //primer Fila, numeros de la funcion objetivos
+    Matriz[0][0] = 1;
+    Matriz[0][1] = -2;
+    Matriz[0][2] = -3;
+    Matriz[0][3] = 0;
+    Matriz[0][4] = 0;
+    Matriz[0][5] = 0;
+    Matriz[0][6] = 0;
+    Matriz[0][7] = 0;
+    //Segunda Fila, cocientes de M
+    Matriz[1][0] = 0;
+    Matriz[1][1] = 0;
+    Matriz[1][2] = 0;
+    Matriz[1][3] = 0;
+    Matriz[1][4] = 0;
+    Matriz[1][5] = -1;
+    Matriz[1][6] = -1;
+    Matriz[1][7] = 0;
+    //Tercer Fila, normal
+    Matriz[2][0] = 0;
+    Matriz[2][1] = 0.5;
+    Matriz[2][2] = 0.25;
+    Matriz[2][3] = 1;
+    Matriz[2][4] = 0;
+    Matriz[2][5] = 0;
+    Matriz[2][6] = 0;
+    Matriz[2][7] = 4;
+    //Cuarta Fila, normal
+    Matriz[3][0] = 0;
+    Matriz[3][1] = 1;
+    Matriz[3][2] = 3;
+    Matriz[3][3] = 0;
+    Matriz[3][4] = -1;
+    Matriz[3][5] = 1;
+    Matriz[3][6] = 0;
+    Matriz[3][7] = 20;
+    //Cuarta Fila, normal
+    Matriz[4][0] = 0;
+    Matriz[4][1] = 1;
+    Matriz[4][2] = 1;
+    Matriz[4][3] = 0;
+    Matriz[4][4] = 0;
+    Matriz[4][5] = 0;
+    Matriz[4][6] = 1;
+    Matriz[4][7] = 10;
+}
+
 
 bool ExistenMs(){
     for (int j = 0 ; j < ColumnasMatriz ; j++){
@@ -134,21 +267,21 @@ bool ExistenMs(){
     return false;
 }
 
-void CanonizarMs(int posicion_artificiales){
-    int a, b, c; 
-    for(  a = posicion_artificiales ; a < posicion_artificiales + cantidad_artificiales; a = a + 1 ){//este ciclo va a recorrer todas las artificiales
-      for(  b = 2 ; b < ColumnasMatriz; b = b + 1 ){//este ciclo va a recorrer todas las artificiales
-            if ( Matriz[b][a] == 1){//si da igual a uno, aqui es donde se encuentra el 1 de la M que estamos canonizando
-              //printf("%d\n", b );
-              for(  c = 0 ; c < ColumnasMatriz; c = c + 1 ){//este ciclo va a recorrer todas las artificiales
-                    Matriz[1][c] = Matriz[1][c] + Matriz[b][c];
-            }
-         }
-       }
-
-    }
-    PrintTablaIntermedia();
-}
+//void CanonizarMs(int posicion_artificiales){
+//    int a, b, c; 
+//    for(  a = posicion_artificiales ; a < posicion_artificiales + cantidad_artificiales; a = a + 1 ){//este ciclo va a recorrer todas las artificiales
+//      for(  b = 2 ; b < ColumnasMatriz; b = b + 1 ){//este ciclo va a recorrer todas las artificiales
+//            if ( Matriz[b][a] == 1){//si da igual a uno, aqui es donde se encuentra el 1 de la M que estamos canonizando
+//              //printf("%d\n", b );
+//              for(  c = 0 ; c < ColumnasMatriz; c = c + 1 ){//este ciclo va a recorrer todas las artificiales
+//                    Matriz[1][c] = Matriz[1][c] + Matriz[b][c];
+//            }
+//         }
+//       }
+//
+//    }
+//    PrintTablaIntermedia();
+//}
 
 int GetPosicionArtificiales(){
     return 1 + cantidad_variables + cantidad_holguras + cantidad_excesos;
@@ -343,16 +476,31 @@ void CanonizarColumna(int i_pivote, int columna_escogida){
     }
 }
 
+
+void CanonizarMs(){
+    int posicion_artificiales = GetPosicionArtificiales();
+    int i_pivote;
+    printf("pos %d\n", posicion_artificiales);
+    for (int j = posicion_artificiales ; j < ColumnasMatriz-1 ; j++){             //este ciclo va a recorrer todas las artificiales
+        i_pivote = EncontrarPivote(j);
+        printf("Pivote:%d y pasé por j:%d (%.1f)\n", i_pivote,j, Matriz[i_pivote][j]);
+        CanonizarColumna(i_pivote, j);
+    }
+    printf("tabla despues de can. Ms\n");
+    PrintTablaIntermedia();
+}
+//
+
 void AlgoritmoSimplex(){
     //Llenamos la matriz
-    MatrizDePrueba2();
+    MatrizDePrueba3();
     
     PrintTablaInicial();
        
-    int posicion_artificiales = GetPosicionArtificiales();
+    
     
     // Canonizar Ms
-    if (ExistenMs()) CanonizarMs(posicion_artificiales);
+    if (ExistenMs()) CanonizarMs();
 
     int i_pivote;
     int columna_escogida;
@@ -366,10 +514,16 @@ void AlgoritmoSimplex(){
         PrintTablaIntermedia();
         // Se busca la columna
         columna_escogida = ColumnaCandidata();
-        if (columna_escogida==-1) break;                   // terminó
+        if (columna_escogida==-1) {
+            printf("No se pudo escoger la columna");
+            break;                   // terminó
+        }
         // Se busca el pivote (dentro de la columna)
         i_pivote = EncontrarPivote(columna_escogida);
-        if (i_pivote==-1) break;                   // Solución no factible
+        if (i_pivote==-1){
+            printf("No se pudo escoger el pivote, sol. no factible");
+            break;                   // terminó
+        }
 
         printf("voy a canonizaaaar %d %d", i_pivote, columna_escogida);
         CanonizarColumna(i_pivote, columna_escogida);
