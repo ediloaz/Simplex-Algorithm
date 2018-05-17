@@ -359,6 +359,10 @@ void MoveFiles(){
     system("mv -v ./LATEX.tex ./Salida/LATEX.tex");
     system("mv -v ./LATEX.log ./Salida/LATEX.log");
     system("mv -v ./LATEX.aux ./Salida/LATEX.aux");
+    system("mv -v ./LATEX.nav ./Salida/LATEX.nav");
+    system("mv -v ./LATEX.out ./Salida/LATEX.out");
+    system("mv -v ./LATEX.snm ./Salida/LATEX.snm");
+    system("mv -v ./LATEX.toc ./Salida/LATEX.toc");
 }
 
 

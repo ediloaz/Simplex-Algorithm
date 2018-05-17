@@ -230,7 +230,7 @@ void AlgoritmoSimplex(){
     int columna_escogida;
 //    float pivote;
     
-    MatrizDePrueba1();
+    MatrizDePrueba3();
 
     PrintTablaInicial();
     
