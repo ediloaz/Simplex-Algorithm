@@ -1,7 +1,8 @@
 #ifndef MATRICESDEPRUEBA_H
 #define MATRICESDEPRUEBA_H
 
-#include "AlgoritmoSimplex.h"
+//#include "AlgoritmoSimplex.h"
+#include <stdbool.h>
 
 
 
@@ -24,7 +25,23 @@ int NumeroFinalizar = 0;
 int numero_tabla_intermedia = 1;
 bool maximizar;     // si es 1 es maximizar o si es -1 es minimizar
 
-// Dakota Modificado ((Para soluciones multiples)
+
+void MatrizDePrueba1();
+void MatrizDePrueba2();
+void MatrizDePrueba3();
+
+int getColumnasMatriz(){
+    return ColumnasMatriz;
+}
+
+int getFilasMatriz(){
+    return FilasMatriz;
+}
+
+
+
+
+// Dakota Modificado (Para soluciones multiples)
 void MatrizDePrueba3(){
     maximizar = true;
     cantidad_variables = 3;
@@ -97,7 +114,7 @@ void MatrizDePrueba3(){
 }
 
 
-// Fábrica de La Agricultura ((Tiene Ms)
+// Fábrica de La Agricultura (Tiene Ms)
 void MatrizDePrueba2(){
     maximizar = true;
     cantidad_variables = 2;

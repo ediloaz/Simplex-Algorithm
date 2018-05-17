@@ -6,6 +6,11 @@
 #include "MatricesDePrueba.h"
 
 
+void MatrizDePrueba1();
+void MatrizDePrueba2();
+void MatrizDePrueba3();
+
+
 void BOLD(){
     printf("\x1B[1m");
 }
@@ -33,19 +38,23 @@ void PrintMatriz(){ /* Función donde se ejecuta la lógica del programa */
 void PrintTablaInicial(){
     printf("Tabla inicial:\n");
     PrintMatriz();
+    Latex_PrintTable(0, -1, -1, false);
 }
 
 void PrintTablaFinal(){
     printf("Tabla final:\n");
     PrintMatriz();
+    Latex_PrintTable(-1,-1, -1, false);
+
 }
 
-void PrintTablaIntermedia(){
+void PrintTablaIntermedia(int columna_escogida){
     BOLD();
     printf("Tabla intermedia #%d:\n",numero_tabla_intermedia);
     RESET();
     PrintMatriz();
     numero_tabla_intermedia ++;
+    Latex_PrintTable(numero_tabla_intermedia, -1, columna_escogida, true); // Canonizada
 }
 
 
@@ -211,16 +220,17 @@ void CanonizarMs(){
 //        printf("Pivote:%d y pasé por j:%d (%.1f)\n", i_pivote,j, Matriz[i_pivote][j]);
         CanonizarColumna(i_pivote, j);
     }
-    PrintTablaIntermedia();
+    Latex_PrintTable(-2,-1, -2, true); // Ms canonizadas
+//    PrintTablaIntermedia();
 }
 //
 
 void AlgoritmoSimplex(){
     int i_pivote;
     int columna_escogida;
-    float pivote;
+//    float pivote;
     
-    MatrizDePrueba3();
+    MatrizDePrueba1();
 
     PrintTablaInicial();
     
@@ -243,9 +253,12 @@ void AlgoritmoSimplex(){
         }
         printf("Pivote escogido: %.2f (%d,%d)\n", Matriz[i_pivote][columna_escogida], i_pivote, columna_escogida);
         puts("");
+        Latex_PrintTable(numero_tabla_intermedia,  i_pivote,  columna_escogida, false); // Tabla intermedia con Pivoteo
         CanonizarColumna(i_pivote, columna_escogida);
-        PrintTablaIntermedia();
+        PrintTablaIntermedia(columna_escogida);
     }
+    PrintTablaFinal();
+
      
 }
 

@@ -14,16 +14,17 @@
 struct timeval st, et;
 
 
+
 int main(int argc, char** argv) {
     srand(time(NULL));                                          // Cambiamos la semilla de la función rand() cada vez que iniciamos el programa.
-    printf("Inicio \n\n");
-
+    PRINT("Inicio \n\n");
+    IniciarLatex();
     // IniciarInterfaz(argc, argv);
     
     AlgoritmoSimplex();
     
-    // Latex();
-    
+
+    TerminarLatex();
     printf("\n\nFinal \n\n");
     return (EXIT_SUCCESS);
 }
