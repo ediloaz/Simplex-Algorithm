@@ -41,6 +41,7 @@
       </toolsSet>
       <compileType>
         <cTool>
+          <standard>3</standard>
           <commandlineTool>gcc </commandlineTool>
         </cTool>
       </compileType>

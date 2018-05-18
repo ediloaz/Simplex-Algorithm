@@ -13,6 +13,7 @@ int cantidad_holguras;
 int cantidad_excesos;
 int cantidad_artificiales;
 
+ char nombre_variables[8][40];
 
 // Información de la matriz
 int FilasMatriz = 6;
@@ -23,8 +24,15 @@ float Matriz[6][9];
 //int i,j;
 int NumeroFinalizar = 0;
 int numero_tabla_intermedia = 1;
-bool maximizar;     // si es 1 es maximizar o si es -1 es minimizar
 
+bool maximizar;                 // si es 1 es maximizar o si es -1 es minimizar
+bool tablas_intermedias = true;
+
+bool casos_especiales[4];       // Banderas para los casos especiales
+                                // Orden: [0] No acotado
+                                //        [1] No factible
+                                //        [2] Degenerado
+                                //        [3] Múltiples soluciones
 
 void MatrizDePrueba1();
 void MatrizDePrueba2();
@@ -50,6 +58,15 @@ void MatrizDePrueba3(){
     cantidad_artificiales = 0;
     FilasMatriz = 6;
     ColumnasMatriz = 9;
+    
+     strcpy(nombre_variables[0], "Carros");
+    strcpy(nombre_variables[1], "Motos");
+    strcpy(nombre_variables[2], "Abejones");
+    strcpy(nombre_variables[3], "Gorriones");
+    strcpy(nombre_variables[4], "Loros");
+    strcpy(nombre_variables[5], "Procesos");
+    strcpy(nombre_variables[6], "Hilos");
+    strcpy(nombre_variables[7], "Comas");
 
     //primer Fila, numeros de la funcion objetivos
     Matriz[0][0] = 1;
@@ -124,6 +141,15 @@ void MatrizDePrueba2(){
     FilasMatriz = 5;
     ColumnasMatriz = 8;
 
+         strcpy(nombre_variables[0], "Carros");
+    strcpy(nombre_variables[1], "Motos");
+    strcpy(nombre_variables[2], "Abejones");
+    strcpy(nombre_variables[3], "Gorriones");
+    strcpy(nombre_variables[4], "Loros");
+    strcpy(nombre_variables[5], "Procesos");
+    strcpy(nombre_variables[6], "Hilos");
+    strcpy(nombre_variables[7], "Comas");
+    
     //primer Fila, numeros de la funcion objetivos
     Matriz[0][0] = 1;
     Matriz[0][1] = -10000;
@@ -181,6 +207,16 @@ void MatrizDePrueba1(){
     cantidad_artificiales = 2;
     FilasMatriz = 5;
     ColumnasMatriz = 8;
+    
+         strcpy(nombre_variables[0], "Carros");
+    strcpy(nombre_variables[1], "Motos");
+    strcpy(nombre_variables[2], "Abejones");
+    strcpy(nombre_variables[3], "Gorriones");
+    strcpy(nombre_variables[4], "Loros");
+    strcpy(nombre_variables[5], "Procesos");
+    strcpy(nombre_variables[6], "Hilos");
+    strcpy(nombre_variables[7], "Comas");
+    
     //primer Fila, numeros de la funcion objetivos
     Matriz[0][0] = 1;
     Matriz[0][1] = -2;

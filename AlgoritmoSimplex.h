@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "MatricesDePrueba.h"
-
+#include <math.h>
 
 void MatrizDePrueba1();
 void MatrizDePrueba2();
@@ -34,18 +34,26 @@ void PrintMatriz(){ /* Función donde se ejecuta la lógica del programa */
     printf("\n");
 }
 
+void PrintProblemaOriginal(){
+    Latex_PrintProblemSection(maximizar);
+}
 
 void PrintTablaInicial(){
     printf("Tabla inicial:\n");
     PrintMatriz();
+    Latex_Write("\\section{Tabla inicial} \n");
     Latex_PrintTable(0, -1, -1, false);
 }
 
-void PrintTablaFinal(){
+void PrintSolucionFinal(){
+    Latex_PrintFinalSolution();
+}
+
+    void PrintTablaFinal(){
     printf("Tabla final:\n");
     PrintMatriz();
+    Latex_Write("\\section{Tabla final} \n");
     Latex_PrintTable(-1,-1, -1, false);
-
 }
 
 void PrintTablaIntermedia(int columna_escogida){
@@ -95,6 +103,9 @@ bool ExisteColumnaCandidata(){
 //        }
 //    }
 //}
+
+
+
 
 // Hay columnas que quedan con valores muy, muy decimalizados, por ejempo 0.00000000000000341, y esto provoca que sea mayor a 0, cuando no debe ser así
 int ColumnaCandidata(){            // i={0,1}
@@ -231,11 +242,13 @@ void AlgoritmoSimplex(){
 //    float pivote;
     
     MatrizDePrueba3();
-
+    
+    PrintProblemaOriginal();
     PrintTablaInicial();
     
     if (ExistenMs()) CanonizarMs();
     
+    if (tablas_intermedias) Latex_Write("\\section{Tablas intermedias} \n");
     while (ExisteColumnaCandidata()){
         columna_escogida = ColumnaCandidata();
         if (columna_escogida==-1) {
@@ -253,11 +266,12 @@ void AlgoritmoSimplex(){
         }
         printf("Pivote escogido: %.2f (%d,%d)\n", Matriz[i_pivote][columna_escogida], i_pivote, columna_escogida);
         puts("");
-        Latex_PrintTable(numero_tabla_intermedia,  i_pivote,  columna_escogida, false); // Tabla intermedia con Pivoteo
+        if (tablas_intermedias) Latex_PrintTable(numero_tabla_intermedia,  i_pivote,  columna_escogida, false); // Tabla intermedia con Pivoteo
         CanonizarColumna(i_pivote, columna_escogida);
-        PrintTablaIntermedia(columna_escogida);
+        if (tablas_intermedias) PrintTablaIntermedia(columna_escogida);
     }
     PrintTablaFinal();
+    PrintSolucionFinal();
 
      
 }

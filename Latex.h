@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "MatricesDePrueba.h"
+//#include "AlgoritmoSimplex.h"
 
 #ifndef _LATEX_H_
 #define _LATEX_H_
@@ -17,10 +19,30 @@ FILE * tex_file;
 double GetProbabilidad(int n);
 
 
+char *replace_str(char *str, char *orig, char *rep)
+{
+  static char buffer[4096];
+  char *p;
+
+  if(!(p = strstr(str, orig)))  // Is 'orig' even in 'str'?
+    return str;
+
+  strncpy(buffer, str, p-str); // Copy characters from 'str' start to 'orig' st$
+  buffer[p-str] = '\0';
+
+  sprintf(buffer+(p-str), "%s%s", rep, p+strlen(orig));
+
+  return buffer;
+}
+
+
 
 
 void Latex_Write(char * text){
     fputs(text, tex_file);
+}
+void Latex_WriteS(char * text, char * string){
+    fprintf(tex_file, text, string);
 }
 void Latex_WriteI(char * text, int numero){
     fprintf(tex_file, text, numero);
@@ -28,14 +50,81 @@ void Latex_WriteI(char * text, int numero){
 void Latex_WriteII(char * text, int numero1, int numero2){
     fprintf(tex_file, text, numero1, numero2);
 }
-void Latex_WriteF(char * text, float numero){
-    fprintf(tex_file, text, numero);
+void Latex_WriteF(char * text, float float_number){
+    int number = (int)(float_number*1000);
+    if (number%10 == 0 && number%100 == 0 && number%1000 == 0){
+        text = replace_str(text, "%.1f", "%d");
+        fprintf(tex_file, text, (int)float_number);
+    }
+    else{
+        fprintf(tex_file, text, float_number);
+    }
 }
-void Latex_WriteFF(char * text, float numero1, float numero2){
-    fprintf(tex_file, text, numero1, numero2);
+void Latex_WriteFF(char * text, float float_number1, float float_number2){
+    int number1 = (int)(float_number1*1000);
+    int number2 = (int)(float_number2*1000);
+    if (number1%10 == 0 && number1%100 == 0 && number1%1000 == 0){
+        text = replace_str(text, "%.1f", "%d");
+        if (number2%10 == 0 && number2%100 == 0 && number2%1000 == 0){
+            if (number2<0)  text = replace_str(text, "+%.1f", "%d");
+            else            text = replace_str(text, "%.1f", "%d");
+            fprintf(tex_file, text, (int)float_number1, (int)float_number2);
+        }else{
+            fprintf(tex_file, text, (int)float_number1, float_number2);
+        }
+    }else{
+        if (number2%10 == 0 && number2%100 == 0 && number2%1000 == 0){
+            printf("Cambie solo uno? Antes: %s", text);
+            text = replace_str(text, "%.1f", "%AAAAAAAA");      // Cambio temporal
+            printf("| Despues%s", text);
+            if (number2<0)  text = replace_str(text, "+%.1f", "%d");
+            else            text = replace_str(text, "%.1f", "%d");
+            text = replace_str(text, "%AAAAAAAA", "%.1f");      // Cambio temporal
+            fprintf(tex_file, text, float_number1, (int)float_number2);
+        }else{
+            fprintf(tex_file, text, float_number1, float_number2);
+        }
+    }
+}
+
+bool ColumnaEsCanonizada(int j){
+    int number, contador = 0;
+    number = (int)(Matriz[0][j]*1000);
+    printf("\n\n IF: %d", number);
+    if (number != 0) return false;
+    number = (int)(Matriz[1][j]*1000);
+    printf("\n\n IF: %d", number);
+    if (number != 0) return false;
+    for (int i = 2 ; i < FilasMatriz ; i++){
+        number = (int)(Matriz[i][j]*1000);
+        printf("\n\n IF: %d", number);
+        if (number == 1000){
+            contador ++;
+        }else if (number != 0){
+            return false;
+        }
+    }
+    if (contador == 1)  return true;    // Hubo 0s y un 1
+    else                return false;   // No hubo 1s
+}
+
+int UnoDeColumnaCanonizada(int j){
+    int number;
+    for (int i = 2 ; i < FilasMatriz ; i++){
+        number = (int)(Matriz[i][j]*1000);
+        if (number == 1000){
+            return i;
+        }
+    }
+    return 0;
 }
 
 
+
+
+// - - - - - - - - - - - - -
+// - - SECTION 4, 5 & 6  - - 
+// - - - - - - - - - - - - - 
 void Latex_PrintStartTable(int numero_tabla){
     Latex_Write(" \n");
     Latex_Write("\\begin{frame}  \n");
@@ -93,6 +182,16 @@ void Latex_PrintCellsTable_FirstRow(int columna_escogida){
     Latex_Write(" & \\textbf{•} \\\\");
     
     Latex_Write("\\hline \\hline \n");
+}
+
+bool EsCero(float float_number){
+    int number = (int)(float_number*1000);
+    if (number%10 == 0 && number%100 == 0 && number%1000 == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 void Latex_PrintCellsTable_SecondRow(int i_pivote, int columna_escogida){
@@ -196,12 +295,173 @@ void Latex_PrintTable(int numero_tabla, int i_pivote, int columna_escogida, bool
 }
 
 
-//void Latex_Table(struct st_tabla_A tabla){
-//    Latex_Table_Start(tabla.N);
-//    Latex_Table_Content(tabla.N, tabla.N);
-//    Latex_Table_End();
-//}
 
+
+// - - - - - - - - - 
+// - - SECTION 3 - - 
+// - - - - - - - - - 
+void Latex_PrintEndProblemSection(){
+    Latex_Write("\\end{column} \n");
+    Latex_Write("\\end{columns} \n");
+    Latex_Write("\\end{frame} \n");
+}
+
+void Latex_PrintStartProblemSection(){
+    Latex_Write(" \n");
+    Latex_Write("\\section{Problema original}  \n");
+    Latex_Write("\\begin{frame}  \n");
+    Latex_Write("\\frametitle{Representación matemática} \n");
+    Latex_Write("\\begin{columns} \n");
+    Latex_Write("\\begin{column}{0.5\\textwidth} \n");
+}
+
+void Latex_PrintContentProblemSection(bool maximizar){
+    if (maximizar == true)  Latex_Write("\\begin{alertblock}{Maximizar} \n");
+    else                    Latex_Write("\\begin{alertblock}{Minimizar} \n");
+    Latex_Write("\\begin{itemize} \n");
+    Latex_Write("\\item $Z = ");
+    if (Matriz[0][1]>0) Latex_WriteF("%.1fx_{1}",Matriz[0][1]);
+        else            Latex_WriteF("%.1fx_{1}",-1*Matriz[0][1]);
+    for (int i = 1 ; i < cantidad_variables ; i++){
+        if (Matriz[0][i+1]>0) Latex_WriteFF(" - %.1fx_{%.1f}",Matriz[0][i+1], (float)i+1);
+        else                  Latex_WriteFF(" + %.1fx_{%.1f}",-1*Matriz[0][i+1], (float)i+1);
+    }
+    Latex_Write("$ \n");
+    Latex_Write("\\end{itemize} \n");
+    Latex_Write("\\end{alertblock} \n");
+    Latex_Write("\\begin{alertblock}{Restricciones} \n");
+    Latex_Write("\\begin{enumerate} \n");
+    for (int i = 2 ; i < FilasMatriz ; i++){
+        Latex_WriteF("\\item $ %.1fx_{1} ",Matriz[i][1]);
+        for (int j = 1 ; j < cantidad_variables ; j++){
+            if (Matriz[i][j]<0) Latex_WriteFF(" - %.1fx_{%.1f}",-1*Matriz[i][j+1], (float)j+1);
+            else                Latex_WriteFF(" + %.1fx_{%.1f}",Matriz[i][j+1], (float)j+1);
+        }
+        Latex_WriteF(" \\leq %.1f",Matriz[i][ColumnasMatriz-1]);
+        Latex_Write("$ \n");
+    }
+    Latex_Write("\\end{enumerate} \n");
+    Latex_Write("\\end{alertblock} \n");
+    Latex_Write("\\end{column} \n");
+    Latex_Write("\\begin{column}{0.5\\textwidth}  \n");
+    Latex_Write("\\begin{alertblock}{Nombres de las variables} \n");
+    Latex_Write("\\begin{itemize} \n");
+    for (int i = 0 ; i < cantidad_variables ; i++){
+        Latex_WriteI("\\item $x_{%i}$: ", i+1);
+        Latex_WriteS("%s ", nombre_variables[i]);
+        Latex_Write(" \n");
+    }
+    Latex_Write("\\end{itemize} \n");
+    Latex_Write("\\end{alertblock} \n");
+}
+
+void Latex_PrintProblemSection(bool maximizar){
+    Latex_PrintStartProblemSection();
+    Latex_PrintContentProblemSection(maximizar);
+    Latex_PrintEndProblemSection();
+}
+
+
+// - - - - - - - - - - - - 
+// - - Final Solution  - - 
+// - - - - - - - - - - - -      
+void Latex_PrintSlideSolution(){            // Escribir en prosa, "Debe ser 10 Carros, 3.5 zanahorias y 1 laptop para obtener 200.
+    Latex_Write("\n");
+    Latex_Write("\\section{Solución} \n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Solución} \n");
+    Latex_Write("\\begin{exampleblock}{Solución óptima} \n");
+    Latex_Write("\\begin{itemize} \n");
+    Latex_WriteF("\\item $Z = %.1f$ \n", Matriz[0][ColumnasMatriz-1]);
+    int i_solucion;
+    for (int j = 1 ; j < cantidad_variables+1 ; j++){
+        puts("\n\n entré a for \n\n");
+        if (ColumnaEsCanonizada(j)){
+            puts("\n\n entré a IF \n\n");
+            i_solucion = UnoDeColumnaCanonizada(j);
+            Latex_WriteFF("\\item $x_{%.1f} = %.1f$ \n",(float)j,  Matriz[i_solucion][ColumnasMatriz-1]);
+        }
+    }
+    Latex_Write("\\end{itemize} \n");
+    Latex_Write("\\end{exampleblock} \n");
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+}
+void Latex_PrintParticularCasesSolution(){
+    Latex_Write("\n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Casos especiales} \n");
+    if (casos_especiales[0] || casos_especiales[1] || casos_especiales[2] || casos_especiales[3]){
+        Latex_Write("El problema presentó los siguientes casos especiales: \n");
+        Latex_Write("\\begin{exampleblock}{} \n");
+        Latex_Write("\\begin{enumerate} \n");
+        if (casos_especiales[0])    Latex_Write("\\item Problema no acotado  \n");
+        if (casos_especiales[1])    Latex_Write("\\item Problema no factible  \n");
+        if (casos_especiales[2])    Latex_Write("\\item Problema degenerado  \n");
+        if (casos_especiales[3])    Latex_Write("\\item Problema con soluciones múltiples  \n");
+        Latex_Write("\\end{enumerate} \n");
+        Latex_Write("\\end{exampleblock} \n");
+        Latex_Write("En los siguientes slides se explicará ésto. \n");
+    }else{
+        Latex_Write("El problema no presentó ningún caso especial \n");
+    }
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+}
+
+void Latex_PrintNotLimitedProblems(){
+    Latex_Write("\n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Problema no acotado} \n");
+    Latex_Write("Explicación del porqué.\n");
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+}
+
+
+void Latex_PrintNotFeasibleProblems(){
+    Latex_Write("\n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Problema no factible} \n");
+    Latex_Write("Explicación del porqué.\n");
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+}
+
+void Latex_PrintDegeneratedProblems(){
+    Latex_Write("\n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Problema degenerado} \n");
+    Latex_Write("Explicación del porqué.\n");
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+}
+
+void Latex_PrintMultipleSolutionsProblems(){
+    Latex_Write("\n");
+    Latex_Write("\\begin{frame} \n");
+    Latex_Write("\\frametitle{Problema con soluciones múltiples} \n");
+    Latex_Write("Explicación del porqué.\n");
+    Latex_Write("\\end{frame} \n");
+    Latex_Write("\n");
+
+}
+
+void Latex_PrintFinalSolution(){
+    Latex_PrintSlideSolution();
+    Latex_PrintParticularCasesSolution();
+    if (casos_especiales[0])    Latex_PrintNotLimitedProblems();        // No acotados
+    if (casos_especiales[1])    Latex_PrintNotFeasibleProblems();       // No factibles
+    if (casos_especiales[2])    Latex_PrintDegeneratedProblems();       // Degenerados
+    if (casos_especiales[3])    Latex_PrintMultipleSolutionsProblems(); // Múltiples soluciones
+}
+
+
+
+
+// - - - - - - - - - - - - 
+// - - CONFIGURACIONES - - 
+// - - - - - - - - - - - - 
 void Latex_ComentariosIniciales(){
     fputs("% Technological of Costa Rica \n", tex_file);
     fputs("% Operations Research\n", tex_file);
