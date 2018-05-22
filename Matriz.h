@@ -33,6 +33,8 @@ bool maximizar;                 // si es 1 es maximizar o si es -1 es minimizar
 // 1: Sí imprimir     || 0: No imprimir
 bool tablas_intermedias;
 
+// Indica si la matriz es degenerada
+bool MatrizDegenerada = false;
 // Banderas para los casos especiales
 // Orden: [0] No acotado
 //        [1] No factible

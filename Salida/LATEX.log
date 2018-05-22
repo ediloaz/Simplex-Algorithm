@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  20 MAY 2018 17:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  21 MAY 2018 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1276,8 +1276,10 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count172
+) (./LATEX.aux
+LaTeX Info: Redefining \. on input line 26.
+LaTeX Info: Redefining \% on input line 26.
 )
-No file LATEX.aux.
 \openout1 = `LATEX.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
@@ -1295,6 +1297,7 @@ LaTeX Font Info:    ... okay on input line 68.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
 LaTeX Font Info:    ... okay on input line 68.
 LaTeX Font Info:    Try loading font information for T1+phv on input line 68.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
@@ -1375,6 +1378,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 68.
 LaTeX Info: Redefining \pageref on input line 68.
 LaTeX Info: Redefining \nameref on input line 68.
+
+(./LATEX.out) (./LATEX.out)
 \@outlinefile=\write5
 \openout5 = `LATEX.out'.
 
@@ -1452,11 +1457,11 @@ Dictionary: translator-theorem-dictionary, Language: English
 LaTeX Info: Redefining \includegraphics on input line 68.
 LaTeX Info: Redefining \. on input line 68.
 LaTeX Info: Redefining \% on input line 68.
-
-No file LATEX.nav.
+ (./LATEX.nav)
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 74.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 74.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
@@ -1524,6 +1529,80 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 
 ] [4
 
+] [5
+
+]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 117.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 117.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 117.
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 117--117
+[][]  
+ []
+
+[6
+
+] [7
+
+]
+
+LaTeX Font Warning: Font shape `OMS/phv/bx/n' undefined
+(Font)              using `OMS/phv/m/n' instead
+(Font)              for symbol `textbullet' on input line 136.
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 136.
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 136--136
+[][]  
+ []
+
+[8
+
+]
+LaTeX Font Info:    Font shape `OMS/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 155--155
+[][]  
+ []
+
+[9
+
+] [10
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 175--175
+[][]  
+ []
+
+[11
+
+] [12
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 186--186
+[][]  
+ []
+
+[13
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 192--192
+[][]  
+ []
+
+[14
+
 ]
 \tf@nav=\write6
 \openout6 = `LATEX.nav'.
@@ -1534,14 +1613,14 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 \tf@snm=\write8
 \openout8 = `LATEX.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 194.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 194.
  (./LATEX.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 194.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 194.
 
 
 Package rerunfilecheck Warning: File `LATEX.out' has changed.
@@ -1549,25 +1628,31 @@ Package rerunfilecheck Warning: File `LATEX.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `LATEX.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  E7858E654BA42913C7CB74F6BF399C9E;55.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
+(rerunfilecheck)             Before: 78D36610CCB129E555CBE69256FE33D8;107
+(rerunfilecheck)             After:  3E37C88084C9CBDB41DB3D892EA53AF6;247.
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 194.
  ) 
 Here is how much of TeX's memory you used:
- 22844 strings out of 493029
- 436520 string characters out of 6136234
- 617762 words of memory out of 5000000
- 25801 multiletter control sequences out of 15000+600000
- 49076 words of font info for 69 fonts, out of 8000000 for 9000
+ 23136 strings out of 493029
+ 442572 string characters out of 6136234
+ 623898 words of memory out of 5000000
+ 26053 multiletter control sequences out of 15000+600000
+ 59894 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,13n,95p,1751b,708s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on LATEX.pdf (4 pages, 20087 bytes).
+ 71i,13n,95p,1751b,957s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on LATEX.pdf (14 pages, 46071 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 59 words of extra memory for PDF output out of 10000 (max. 10000000)
 

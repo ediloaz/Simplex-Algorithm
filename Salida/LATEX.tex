@@ -87,6 +87,110 @@ Semestre 1, 2018 \\
 \lipsum[1-1]
 \end{frame}
 
+ 
+\section{Problema original}  
+\begin{frame}  
+\frametitle{Representación matemática} 
+\begin{columns} 
+\begin{column}{0.5\textwidth} 
+\begin{alertblock}{Maximizar} 
+\begin{itemize} 
+\item $Z = 1x_{1} - 1x_{2}$ 
+\end{itemize} 
+\end{alertblock} 
+\begin{alertblock}{Restricciones} 
+\begin{enumerate} 
+\item $ 1x_{1}  + 1x_{2} \leq 50$ 
+\item $ 1x_{1}  + 1x_{2} \leq 100$ 
+\end{enumerate} 
+\end{alertblock} 
+\end{column} 
+\begin{column}{0.5\textwidth}  
+\begin{alertblock}{Nombres de las variables} 
+\begin{itemize} 
+\item $x_{1}$:   
+\item $x_{2}$:   
+\end{itemize} 
+\end{alertblock} 
+\end{column} 
+\end{columns} 
+\end{frame} 
+\section{Tabla inicial} 
+ 
+\begin{frame}  
+\frametitle{Tabla inicial} 
+\begin{table}[H] 
+\begin{center} 
+\begin{tabular}{|*{7}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
+1 & 1 & 1 & 0 & 0 & 1M & 0 \\\hline 
+0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\hline 
+0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+\hline 
+\end{tabular} 
+\caption{Tabla inicial.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia 1} 
+\begin{table}[H] 
+\begin{center} 
+\begin{tabular}{|*{7}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
+1 & 1-1M & 1-1M & 0 & -1M & 0 & -50M \\\hline 
+0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\hline 
+0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+\hline 
+\end{tabular} 
+\caption{Tabla intermedia 1, con la columna a$_{1}$ canonizada.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+\section{Tabla final} 
+ 
+\begin{frame}  
+\frametitle{Tabla final} 
+\begin{table}[H] 
+\begin{center} 
+\begin{tabular}{|*{7}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
+1 & 1 & 1 & 0 & 0 & 1M & 0 \\\hline 
+0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\hline 
+0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+\hline 
+\end{tabular} 
+\caption{Tabla final.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+
+\section{Solución} 
+\begin{frame} 
+\frametitle{Solución} 
+\begin{exampleblock}{Solución óptima} 
+\begin{itemize} 
+\item $Z = 0$ 
+\end{itemize} 
+\end{exampleblock} 
+\end{frame} 
+
+
+\begin{frame} 
+\frametitle{Casos especiales} 
+El problema no presentó ningún caso especial 
+\end{frame} 
+
 \end{document}
 % } DOCUMENT 
 % Última línea del documento

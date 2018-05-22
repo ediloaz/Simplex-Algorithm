@@ -64,7 +64,7 @@ void PrintSolucionFinal(){
     Latex_PrintFinalSolution();
 }
 
-    void PrintTablaFinal(){
+void PrintTablaFinal(){
     printf("Tabla final:\n");
     PrintMatriz();
     Latex_Write("\\section{Tabla final} \n");
@@ -90,6 +90,35 @@ bool ExistenMs(){
     return false;
 }
 
+
+
+
+
+bool VerificarFactibilidadM(){ /* Se verifica si la funcion es factible */
+    for (int j = 0 ; j < GetPosicionArtificiales() ; j++){             //este ciclo va a recorrer todas las artificiales
+        if ( Matriz[1][j] != 0){
+            return true;
+        }
+    }
+    return false;
+}
+
+int VerificarSolucionesMultiples(){ /* Se verifica si la funcion es factible */
+    int columna = 0;
+    for (int j = 1 ; j < cantidad_variables+1 ; j++){             //este ciclo va a recorrer todas las artificiales
+        if ( Matriz[0][j] == 0.0){
+            for (int i = 2 ; i < FilasMatriz ; i++){   
+                if (Matriz[i][j]== 0.0 || Matriz[i][j]== 1.0 ){
+                    
+                }else{return j;}
+            }
+        }
+    }
+    return columna;
+}
+
+
+
 int GetPosicionArtificiales(){
     return 1 + cantidad_variables + cantidad_holguras + cantidad_excesos;
 }
@@ -110,15 +139,6 @@ bool ExisteColumnaCandidata(){
     }
     return false;
 }
-
-//bool ExistenMs(int posicion_artificiales){
-//    for(int j = 1 ; j < posicion_artificiales; j++ ){//este ciclo va a recorrer todas las variables normales, de holgura y exceso
-//        if (Matriz[1][j] > 0){            //si alguna de la fila de las M es mayor a 0, entonces se agarra esa columna
-//            return true;
-//        }
-//    }
-//}
-
 
 
 
@@ -211,6 +231,9 @@ int EncontrarPivote(int columna_escogida){
 //                printf("ESCOGÍ la fila %d\n",i);
                 division_menor = division_actual;
                 i_pivote = i;
+            }else if (division_actual == division_menor){
+                MatrizDegenerada = true;
+                printf("\naqui se degenero\n");
             }
         }
     }
@@ -266,6 +289,7 @@ void AlgoritmoSimplex(){
     if (ExistenMs()) CanonizarMs();
     
     if (tablas_intermedias) Latex_Write("\\section{Tablas intermedias} \n");
+    
     while (ExisteColumnaCandidata()){
         columna_escogida = ColumnaCandidata();
         if (columna_escogida==-1) {
@@ -278,7 +302,7 @@ void AlgoritmoSimplex(){
         
         i_pivote = EncontrarPivote(columna_escogida);
         if (i_pivote==-1){
-            printf("No se pudo escoger el pivote, sol. no factible \n");
+            printf("No se pudo escoger el pivote, solucion no acotada \n");
             break;
         }
         printf("Pivote escogido: %.2f (%d,%d)\n", Matriz[i_pivote][columna_escogida], i_pivote, columna_escogida);
@@ -288,6 +312,92 @@ void AlgoritmoSimplex(){
         if (tablas_intermedias) PrintTablaIntermedia(columna_escogida);
     }
     PrintTablaFinal();
+    
+    
+    
+    //se verifica errores o soluciones multiples
+    if (VerificarFactibilidadM() == true){printf("No hay factibilidad \n");}
+    if (MatrizDegenerada == true){printf("Es un problema degenerado \n");}
+    
+    printf("\n\n");
+    
+    columna_escogida =VerificarSolucionesMultiples();
+    //se verifica si puede tener soluciones multiples
+    if (VerificarSolucionesMultiples()!=0 && VerificarFactibilidadM() == false && MatrizDegenerada == false){
+        //Va a guardar los primeros resultados
+
+        int i_solucion;
+        float listaSolucion[4][cantidad_variables];
+        for (int j = 1 ; j < cantidad_variables+1 ; j++){
+            if (ColumnaEsCanonizada(j)){
+                i_solucion = UnoDeColumnaCanonizada(j);
+                //printf("\\item $x_{%.1f} = %.1f$ \n",(float)j,  Matriz[i_solucion][ColumnasMatriz-1]);
+                listaSolucion[0][j-1]=Matriz[i_solucion][ColumnasMatriz-1];
+
+            }else{listaSolucion[0][j-1]=0;}
+        }
+        //se transforma la segunda matriz para obtener la otra solucion
+        int h=0;
+        while (  h<1 ){
+            puts("");
+            printf("Columna escogida: %d\n",columna_escogida);
+
+            i_pivote = EncontrarPivote(columna_escogida);
+            if (i_pivote==-1){
+                printf("No se pudo escoger el pivote para solucion multiple, solucion no acotada \n");
+                break;
+            }
+            printf("Pivote escogido: %.2f (%d,%d)\n", Matriz[i_pivote][columna_escogida], i_pivote, columna_escogida);
+            puts("");
+            if (tablas_intermedias) Latex_PrintTable(numero_tabla_intermedia,  i_pivote,  columna_escogida, false); // Tabla intermedia con Pivoteo
+            CanonizarColumna(i_pivote, columna_escogida);
+            if (tablas_intermedias) PrintTablaIntermedia(columna_escogida);
+            h++;
+        }
+
+        //Va a guardar los segundos resultados
+
+        for (int j = 1 ; j < cantidad_variables+1 ; j++){
+            if (ColumnaEsCanonizada(j)){
+                i_solucion = UnoDeColumnaCanonizada(j);
+                //printf("\\item $x_{%.1f} = %.1f$ \n",(float)j,  Matriz[i_solucion][ColumnasMatriz-1]);
+                listaSolucion[1][j-1]=Matriz[i_solucion][ColumnasMatriz-1];
+            }else{listaSolucion[1][j-1]=0;}
+        }
+
+        printf("\n");
+        /*
+        //ahora va a imprimir las soluciones multiples
+        for (int j = 0 ; j < 2 ; j++){
+        for (int i = 0 ; i < cantidad_variables ; i++){
+
+                printf(" %f ", listaSolucion[j][i]);
+            }
+            printf("\n");
+        }
+          */
+
+        // se procede a sacar las otras dos soluciones
+
+        for (int i = 0 ; i < cantidad_variables ; i++){
+
+               listaSolucion[2][i]= 0.5*listaSolucion[0][i] + 0.5*listaSolucion[1][i];
+               listaSolucion[3][i]= 0.25*listaSolucion[0][i] + 0.75*listaSolucion[1][i];
+            }
+        printf("\n");
+
+        //ahora va a imprimir las soluciones multiples
+        for (int j = 0 ; j < 4 ; j++){
+        for (int i = 0 ; i < cantidad_variables ; i++){
+
+                printf(" %f ", listaSolucion[j][i]);
+            }
+            printf("\n");
+        }
+    }
+    
+    
+    
     PrintSolucionFinal();
 
      
