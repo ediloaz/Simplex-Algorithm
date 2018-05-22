@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "MatricesDePrueba.h"
+#include <stdbool.h>
+#include "Matriz.h"
 //#include "AlgoritmoSimplex.h"
 
 #ifndef _LATEX_H_

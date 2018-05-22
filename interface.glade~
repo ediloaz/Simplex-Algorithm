@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.18.3 
+
+Copyright (C) 
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+
+Author: ediloaz
+
+-->
 <interface>
   <requires lib="gtk+" version="3.12"/>
+  <!-- interface-license-type all_permissive -->
+  <!-- interface-authors ediloaz -->
+  <object class="GtkListStore" id="liststore1">
+    <columns>
+      <!-- column-name Text -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">≤</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">=</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">≥</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkApplicationWindow" id="interface">
     <property name="can_focus">False</property>
     <property name="default_width">440</property>
@@ -35,10 +65,15 @@
                   <object class="GtkGrid" id="grid3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="valign">start</property>
+                    <property name="column_spacing">2</property>
                     <child>
                       <object class="GtkEntry" id="entry_rest1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <style>
+                          <class name="entry_restriction_variables"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -49,6 +84,9 @@
                       <object class="GtkEntry" id="entry_rest2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <style>
+                          <class name="entry_restriction_variables"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -89,6 +127,7 @@
                       <object class="GtkEntry" id="entry_rest9">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="width_chars">10</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -227,8 +266,19 @@
                     </child>
                     <child>
                       <object class="GtkEntry" id="entry_eq10">
+                        <property name="width_request">2</property>
+                        <property name="height_request">1</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="valign">baseline</property>
+                        <property name="max_length">3</property>
+                        <property name="width_chars">2</property>
+                        <property name="max_width_chars">3</property>
+                        <property name="input_purpose">number</property>
+                        <style>
+                          <class name="clase_eq10"/>
+                          <class name="otra clase"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -236,19 +286,18 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="combobox1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkComboBox" id="combobox2">
+                        <property name="width_request">8</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -259,6 +308,14 @@
                       <object class="GtkComboBox" id="combobox3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext3"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -269,6 +326,14 @@
                       <object class="GtkComboBox" id="combobox4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext4"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -279,6 +344,14 @@
                       <object class="GtkComboBox" id="combobox5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext5"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -289,6 +362,14 @@
                       <object class="GtkComboBox" id="combobox6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext6"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -299,6 +380,14 @@
                       <object class="GtkComboBox" id="combobox7">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext7"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -309,6 +398,14 @@
                       <object class="GtkComboBox" id="combobox8">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext8"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -319,6 +416,14 @@
                       <object class="GtkComboBox" id="combobox9">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext9"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -329,10 +434,37 @@
                       <object class="GtkComboBox" id="combobox10">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext10"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">9</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="combobox1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="model">liststore1</property>
+                        <property name="active">0</property>
+                        <property name="active_id">1</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                   </object>
@@ -458,9 +590,6 @@
                     <property name="top_attach">6</property>
                   </packing>
                 </child>
-                <child>
-                  <placeholder/>
-                </child>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -492,6 +621,7 @@
             </child>
             <child>
               <object class="GtkGrid" id="grid8">
+                <property name="width_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -520,24 +650,6 @@
                 <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child>
               <placeholder/>

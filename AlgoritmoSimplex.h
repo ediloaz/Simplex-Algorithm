@@ -3,12 +3,13 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "MatricesDePrueba.h"
+//#include "MatricesDePrueba.h"
+#include "Matriz.h"
 #include <math.h>
 
-void MatrizDePrueba1();
-void MatrizDePrueba2();
-void MatrizDePrueba3();
+//void MatrizDePrueba1();
+//void MatrizDePrueba2();
+//void MatrizDePrueba3();
 
 
 void BOLD(){
@@ -20,17 +21,31 @@ void RESET(){
 }
 
 void PrintMatriz(){ /* Función donde se ejecuta la lógica del programa */
-    printf("Z \t x1 \t x2 \t s1 \t e1 \t a1 \t a2 \t X\n");
+    printf("Z \t ");
+    for (int i = 0 ; i < 8 ; i++){
+        if (flags_variables[i] == true){
+            printf("x%d \t ", i+1);
+        }
+    }
+    for (int i = 0 ; i < cantidad_holguras ; i++){
+        printf("s%d \t ", i+1);
+    }
+    for (int i = 0 ; i < cantidad_excesos ; i++){
+        printf("e%d \t ", i+1);
+    }
+    for (int i = 0 ; i < cantidad_artificiales ; i++){
+        printf("a%d \t ", i+1);
+    }
+    printf("X\n");
     for (int i=0;i<FilasMatriz;i++)
     {
-        if (i==2) BOLD();
        for(int j=0;j<ColumnasMatriz;j++)
         {
-        printf("%.1f \t",Matriz[i][j]);
+            printf("%.1f \t",Matriz[i][j]);
         }
         printf("\n");
     }
-    RESET();
+    
     printf("\n");
 }
 
@@ -241,7 +256,9 @@ void AlgoritmoSimplex(){
     int columna_escogida;
 //    float pivote;
     
-    MatrizDePrueba3();
+//    MatrizDePrueba1();
+    
+    CreateMatriz();
     
     PrintProblemaOriginal();
     PrintTablaInicial();

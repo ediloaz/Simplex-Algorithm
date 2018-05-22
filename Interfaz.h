@@ -4,8 +4,11 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <stdbool.h>
+#include "Parser.h"
 
+//G_MODULE_EXPORT gboolean;
 
+bool interface_running = true;
 
 GtkBuilder  *builder; 
 GtkWidget   *window;
@@ -49,6 +52,38 @@ GtkWidget   *combobox10;
 GtkWidget   *switch_tablas_intermedias;
 GtkWidget   *button_ejecutar;
 
+char s_constraints[10][40];
+char s_equals[10][10];
+int  s_equalitor[10];
+
+char texto_nombre_problema[100];
+char texto_nombre_variables[100];
+char texto_funcion_objetivo[100];
+
+char texto_rest1[100];
+char texto_rest2[100];
+char texto_rest3[100];
+char texto_rest4[100];
+char texto_rest5[100];
+char texto_rest6[100];
+char texto_rest7[100];
+char texto_rest8[100];
+char texto_rest9[100];
+char texto_rest10[100];
+char texto_eq1[100];
+char texto_eq2[100];
+char texto_eq3[100];
+char texto_eq4[100];
+char texto_eq5[100];
+char texto_eq6[100];
+char texto_eq7[100];
+char texto_eq8[100];
+char texto_eq9[100];
+char texto_eq10[100];
+int id_radiobutton_max;
+int id_switch_tablas_intermedias;
+
+// IniciarInterfaz(argc, argv);
 int IniciarInterfaz(int argc, char *argv[])
 {
     gtk_init(&argc, &argv);
@@ -84,9 +119,24 @@ int IniciarInterfaz(int argc, char *argv[])
     entry_eq8 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_eq8"));
     entry_eq9 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_eq9"));
     entry_eq10= GTK_WIDGET(gtk_builder_get_object(builder, "entry_eq10"));
+    combobox1 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox1"));
+    combobox2 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox2"));
+    combobox3 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox3"));
+    combobox4 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox4"));
+    combobox5 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox5"));
+    combobox6 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox6"));
+    combobox7 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox7"));
+    combobox8 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox8"));
+    combobox9 = GTK_WIDGET(gtk_builder_get_object(builder, "combobox9"));
+    combobox10= GTK_WIDGET(gtk_builder_get_object(builder, "combobox10"));
+    radiobutton_max= GTK_WIDGET(gtk_builder_get_object(builder, "radiobutton_max"));
+    switch_tablas_intermedias= GTK_WIDGET(gtk_builder_get_object(builder, "switch_tablas_intermedias"));
     gtk_builder_connect_signals(builder, NULL);
  
     g_object_unref(builder);
+    
+//    g_signal_connect (window, "delete_event", G_CALLBACK (gtk_window_close), NULL);
+
  
     gtk_widget_show(window);                
     gtk_main();
@@ -129,7 +179,6 @@ void AccionEjecutar(){
     const gchar *g_texto_nombre_problema;
     const gchar *g_texto_nombre_variables;
     const gchar *g_texto_funcion_objetivo;
-    int id_radiobutton;
     const gchar *g_texto_rest1;
     const gchar *g_texto_rest2;
     const gchar *g_texto_rest3;
@@ -150,29 +199,18 @@ void AccionEjecutar(){
     const gchar *g_texto_eq8;
     const gchar *g_texto_eq9;
     const gchar *g_texto_eq10;
-    char texto_nombre_problema[100];
-    char texto_nombre_variables[100];
-    char texto_funcion_objetivo[100];
-    char texto_rest1[100];
-    char texto_rest2[100];
-    char texto_rest3[100];
-    char texto_rest4[100];
-    char texto_rest5[100];
-    char texto_rest6[100];
-    char texto_rest7[100];
-    char texto_rest8[100];
-    char texto_rest9[100];
-    char texto_rest10[100];
-    char texto_eq1[100];
-    char texto_eq2[100];
-    char texto_eq3[100];
-    char texto_eq4[100];
-    char texto_eq5[100];
-    char texto_eq6[100];
-    char texto_eq7[100];
-    char texto_eq8[100];
-    char texto_eq9[100];
-    char texto_eq10[100];
+    int g_combobox1;
+    int g_combobox2;
+    int g_combobox3;
+    int g_combobox4;
+    int g_combobox5;
+    int g_combobox6;
+    int g_combobox7;
+    int g_combobox8;
+    int g_combobox9;
+    int g_combobox10;
+    
+    
 
     // Coger todos los datos de la interfaz y convertirlo a un formato manejable propio de C (ej.: gchar -> char)
     g_texto_nombre_problema = gtk_entry_get_text(GTK_ENTRY(entry_nombre_problema));
@@ -198,6 +236,16 @@ void AccionEjecutar(){
     g_texto_eq8 = gtk_entry_get_text(GTK_ENTRY(entry_eq8));
     g_texto_eq9 = gtk_entry_get_text(GTK_ENTRY(entry_eq9));
     g_texto_eq10 = gtk_entry_get_text(GTK_ENTRY(entry_eq10));
+    g_combobox1 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox1));
+    g_combobox2 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox2));
+    g_combobox3 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox3));
+    g_combobox4 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox4));
+    g_combobox5 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox5));
+    g_combobox6 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox6));
+    g_combobox7 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox7));
+    g_combobox8 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox8));
+    g_combobox9 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox9));
+    g_combobox10 = (int)gtk_combo_box_get_active(GTK_COMBO_BOX(combobox10));
     sprintf(texto_nombre_problema,  "%8s\n", g_texto_nombre_problema);
     sprintf(texto_nombre_variables, "%8s\n", g_texto_nombre_variables);
     sprintf(texto_funcion_objetivo, "%8s\n", g_texto_funcion_objetivo);
@@ -221,25 +269,137 @@ void AccionEjecutar(){
     sprintf(texto_eq8, "%8s\n", g_texto_eq8);
     sprintf(texto_eq9, "%8s\n", g_texto_eq9);
     sprintf(texto_eq10,"%8s\n", g_texto_eq10);
- 
-    // Revisar formato de las variables
-    FormatoCorrectoNombrePrograma(texto_nombre_problema);
-    FormatoCorrectoNombreVariables(texto_nombre_variables);
-    FormatoCorrectoFuncionObjetivo(texto_funcion_objetivo);
-    FormatoCorrectoRestriccion(texto_rest1, texto_eq1);
-    FormatoCorrectoRestriccion(texto_rest2, texto_eq2);
-    FormatoCorrectoRestriccion(texto_rest3, texto_eq3);
-    FormatoCorrectoRestriccion(texto_rest4, texto_eq4);
-    FormatoCorrectoRestriccion(texto_rest5, texto_eq5);
-    FormatoCorrectoRestriccion(texto_rest6, texto_eq6);
-    FormatoCorrectoRestriccion(texto_rest7, texto_eq7);
-    FormatoCorrectoRestriccion(texto_rest8, texto_eq8);
-    FormatoCorrectoRestriccion(texto_rest9, texto_eq9);
+    
+//    strcpy (example, "TechOnTheNet.com knows strcpy!");
 
+    
+    
+    
+//    // Revisar formato de las variables
+//    FormatoCorrectoNombrePrograma(texto_nombre_problema);
+//    FormatoCorrectoNombreVariables(texto_nombre_variables);
+//    FormatoCorrectoFuncionObjetivo(texto_funcion_objetivo);
+//    FormatoCorrectoRestriccion(texto_rest1, texto_eq1);
+//    FormatoCorrectoRestriccion(texto_rest2, texto_eq2);
+//    FormatoCorrectoRestriccion(texto_rest3, texto_eq3);
+//    FormatoCorrectoRestriccion(texto_rest4, texto_eq4);
+//    FormatoCorrectoRestriccion(texto_rest5, texto_eq5);
+//    FormatoCorrectoRestriccion(texto_rest6, texto_eq6);
+//    FormatoCorrectoRestriccion(texto_rest7, texto_eq7);
+//    FormatoCorrectoRestriccion(texto_rest8, texto_eq8);
+//    FormatoCorrectoRestriccion(texto_rest9, texto_eq9);
+    
+    strcpy (s_constraints[0], texto_rest1);
+    strcpy (s_constraints[1], texto_rest2);
+    strcpy (s_constraints[2], texto_rest3);
+    strcpy (s_constraints[3], texto_rest4);
+    strcpy (s_constraints[4], texto_rest5);
+    strcpy (s_constraints[5], texto_rest6);
+    strcpy (s_constraints[6], texto_rest7);
+    strcpy (s_constraints[7], texto_rest8);
+    strcpy (s_constraints[8], texto_rest9);
+    strcpy (s_constraints[9], texto_rest10);
+    
+    strcpy (s_equals[0], texto_eq1);
+    strcpy (s_equals[1], texto_eq2);
+    strcpy (s_equals[2], texto_eq3);
+    strcpy (s_equals[3], texto_eq4);
+    strcpy (s_equals[4], texto_eq5);
+    strcpy (s_equals[5], texto_eq6);
+    strcpy (s_equals[6], texto_eq7);
+    strcpy (s_equals[7], texto_eq8);
+    strcpy (s_equals[8], texto_eq9);
+    strcpy (s_equals[9], texto_eq10);
+    
+    s_equalitor[0] = g_combobox1;
+    s_equalitor[1] = g_combobox2;
+    s_equalitor[2] = g_combobox3;
+    s_equalitor[3] = g_combobox4;
+    s_equalitor[4] = g_combobox5;
+    s_equalitor[5] = g_combobox6;
+    s_equalitor[6] = g_combobox7;
+    s_equalitor[7] = g_combobox8;
+    s_equalitor[8] = g_combobox9;
+    s_equalitor[9] = g_combobox10;
+    
+    
+            
+    GSList *tmp_list;
+    tmp_list = gtk_radio_button_get_group(GTK_RADIO_BUTTON(radiobutton_max));
+    GtkToggleButton *tmp_button = NULL;
+    id_radiobutton_max = -1;
+    while (tmp_list){
+        id_radiobutton_max ++;
+        tmp_button = tmp_list->data;
+        tmp_list = tmp_list->next;
+        if (gtk_toggle_button_get_active(tmp_button))
+            break;
+        tmp_button = NULL;
+    }
+//    printf("\n\n\n\n RADIOBUTTON %i \n\n\n\n", id_radiobutton_max);
+    
+    gboolean g_tablas_intermedias;
+    g_tablas_intermedias = gtk_switch_get_active(GTK_SWITCH(switch_tablas_intermedias));
+    if (g_tablas_intermedias){
+        id_switch_tablas_intermedias = 1;
+    }else{
+        id_switch_tablas_intermedias = 0;
+    }
+    // 0: MIN | 1: MAX ; 
+    
+//    printf("\n\n\n g_combobox1:%d \n\n\n", g_combobox1);
+//    printf("\n\n\n g_combobox2:%d \n\n\n", g_combobox2);
+
+//    texto_rest_list[0] = texto_rest1;
+//    texto_rest_list[1] = texto_rest2;
+//    texto_rest_list[2] = texto_rest3;
+//    printf("\n\n %s \n\n", texto_rest_list[0]);
+//    CrearMatriz();
+//    printf("\n rest 1: %s\n", g_texto_rest1);
+//    printf("\n rest 2: %s\n", g_texto_rest2);
+//    ParserByRow();
+    
+    
+    
+//    if(texto_rest1 == " \n") 
+//    else printf("\n\nEeeees NOOO vacia %i,%i,%i,%i,%i,%i  \n\n", (int)texto_rest1[0], (int)texto_rest1[1], (int)texto_rest1[2], (int)texto_rest1[3], (int)texto_rest1[4], (int)texto_rest1[5]);
+
+    gtk_main_quit();
+    
+//    sleep(1);
+    
+//    interface_running = false;
+    
+//    exit();
+//    on_window_main_destroy();
+    
+//    gtk_widget_set_size_request(GTK_WIDGET(GTK_ENTRY(entry_rest1)),3,5);
+    // delete_entry();
     // Convertir al formato adecuado para el ALGORITMO SIMPLEX
-
+    
+    // gtk_widget_hide(GTK_ENTRY(texto_eq9));
+    // gtk_widget_hide(GTK_ENTRY(texto_rest9));
     // Llamar la función del ALGORITMO SIMPLEX
 
+}
+
+void CrearMatriz(){
+    
+}
+
+gboolean delete_entry() {
+    gtk_widget_hide(entry_eq1);
+    gtk_widget_hide(entry_eq2);
+    gtk_widget_hide(entry_eq3);
+    gtk_widget_hide(entry_eq4);
+    gtk_widget_hide(entry_eq5);
+    gtk_widget_hide(entry_eq6);
+    gtk_widget_hide(entry_eq7);
+    gtk_widget_hide(entry_eq8);
+    gtk_widget_hide(entry_eq9);
+    gtk_widget_hide(entry_eq10);
+    // gtk_widget_show_all(GTK_WIDGET(u));
+    return TRUE;
 }
 
 

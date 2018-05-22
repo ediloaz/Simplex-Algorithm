@@ -4,8 +4,9 @@
 #include <time.h>
 #include <sys/time.h>
 #include "Latex.h"
-//#include "Interfaz.h"
-#include "Tabla.h"
+//#include "Matriz.h"
+#include "Interfaz.h"
+//#include "Tabla.h"
 #include "AlgoritmoSimplex.h"
 
 #define PRINT(x) (printf("%s", x))
@@ -14,17 +15,17 @@
 struct timeval st, et;
 
 
-
 int main(int argc, char** argv) {
     srand(time(NULL));                                          // Cambiamos la semilla de la función rand() cada vez que iniciamos el programa.
     PRINT("Inicio \n\n");
-    IniciarLatex();
-    // IniciarInterfaz(argc, argv);
+//     IniciarLatex();
+
+    IniciarInterfaz(argc, argv);
     
     AlgoritmoSimplex();
     
-
-    TerminarLatex();
+//     gtk_window_close(window);
+//     TerminarLatex();
     printf("\n\nFinal \n\n");
     return (EXIT_SUCCESS);
 }

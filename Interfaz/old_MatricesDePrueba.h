@@ -38,14 +38,14 @@ void MatrizDePrueba1();
 void MatrizDePrueba2();
 void MatrizDePrueba3();
 
-int getColumnasMatriz(){
-    return ColumnasMatriz;
-}
-
-int getFilasMatriz(){
-    return FilasMatriz;
-}
-
+//int getColumnasMatriz(){
+//    return ColumnasMatriz;
+//}
+//
+//int getFilasMatriz(){
+//    return FilasMatriz;
+//}
+//
 
 
 

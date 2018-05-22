@@ -7,8 +7,8 @@
       <itemPath>AlgoritmoSimplex.h</itemPath>
       <itemPath>Interfaz.h</itemPath>
       <itemPath>Latex.h</itemPath>
-      <itemPath>MatricesDePrueba.h</itemPath>
-      <itemPath>Tabla.h</itemPath>
+      <itemPath>Matriz.h</itemPath>
+      <itemPath>Parser.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -51,9 +51,9 @@
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="MatricesDePrueba.h" ex="false" tool="3" flavor2="0">
+      <item path="Matriz.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Tabla.h" ex="false" tool="3" flavor2="0">
+      <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -86,9 +86,9 @@
       </item>
       <item path="Latex.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="MatricesDePrueba.h" ex="false" tool="3" flavor2="0">
+      <item path="Matriz.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Tabla.h" ex="false" tool="3" flavor2="0">
+      <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
