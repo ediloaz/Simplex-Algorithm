@@ -8,9 +8,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/AlgoritmoSimplex.h</file>
-            <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/MatricesDePrueba.h</file>
+            <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/Interfaz.h</file>
             <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/Latex.h</file>
+            <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/Matriz.h</file>
             <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/main.c</file>
+            <file>file:/home/edisson/coding/GitHub/Simplex/Simplex/DatosMatricesDePrueba.h</file>
         </group>
     </open-files>
 </project-private>

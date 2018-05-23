@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include "Parser.h"
-#include "Interfaz.h"
+//#include "Interfaz.h"
 
 
 // Creación de la matriz
@@ -34,7 +34,9 @@ bool maximizar;                 // si es 1 es maximizar o si es -1 es minimizar
 bool tablas_intermedias;
 
 // Indica si la matriz es degenerada
-bool MatrizDegenerada = false;
+int TablaDeMatrizDegenerada;
+int TablaDeMatrizNoAcotada;
+
 // Banderas para los casos especiales
 // Orden: [0] No acotado
 //        [1] No factible
@@ -52,6 +54,9 @@ float constants_objective_function[8];
 float constants[10][8];
 float equals[10];
 int   symbols[10];
+float soluciones_multiples[4][9];        // 9: Z  ||  [0,]: x1 - x8
+
+void PrintMatriz();
 
 
 int getColumnasMatriz(){
@@ -154,12 +159,10 @@ void FillMatriz(){
     
 //    printf("\n\nVoy por la corrida %d \n\n", 1);
     PrintMatriz();
-     
+    
     int inicio;
-    int final ;
     // Llenar con las restricciones
     int real_i = 2, var_i;
-    final = -1 ;        // tiraba error por no ser usada (???)
     for (int i = 2 ; i < 12 ; i++){
         if (flags_restricciones[i-2] == true){
             var_i = i-2;
@@ -172,7 +175,6 @@ void FillMatriz(){
             
             // Columnas de Xi
             inicio = 1;
-            final  = 1 + cantidad_variables;
             cantidad_variables_usadas = 0;
             for (int j = inicio ; j < 9 ; j++){
                 if (flags_variables[j-inicio]){
@@ -288,49 +290,54 @@ void CountCantidadVariables(){
     setCantidadArtificiales(temp_cantidad_artificiales);
 }
 
-void ParserVariables(){
-    if (id_switch_tablas_intermedias == 1) setTablasIntermedias(true);
-    else                                   setTablasIntermedias(false);
-    
-    if (id_radiobutton_max == 1) setMaximizar(true);
-    else                         setMaximizar(false);
-    
-    printf("Función objetivo: \n");
-    printf("\tTexto: %s",texto_funcion_objetivo);
-    for (int j = 0 ; j < 8 ; j++){
-        constants_objective_function[j] = GetConstant(texto_funcion_objetivo, j+1);
-        printf("\tX%i: %.1f", j+1 ,constants_objective_function[j]);
-    }
-    puts("\n");
-
-    printf("Restricciones: \n");
-    for (int i = 0 ; i < 10 ; i++){
-        printf("\tTexto: %s",s_constraints[i]);
-        for (int j = 0 ; j < 8 ; j++){
-            constants[i][j] = GetConstant(s_constraints[i], j+1);
-            printf("\tX%i: %.1f", j+1 ,constants[i][j]);
-            
-        }
-        printf("\n");
-    }
-    // No afecta a la cantidad de columnas
-    printf("Igualados: \n");
-    for (int i = 0 ; i < 10 ; i++){
-        equals[i] = atof(s_equals[i]);
-        printf("\tX%i: %.1f", i,equals[i]);
-        printf("\n");
-    }
-    printf("Igualadores: \n");
-    for (int i = 0 ; i < 10 ; i++){
-        symbols[i] = s_equalitor[i];
-        printf("\tX%i: %d", i,symbols[i]);
-        printf("\n");
-    }
-    
-    CountCantidadVariables();
-    
-//    DefineRows();
-//    DefineColumns();
+void ParserVariables(){ 
+    printf(" ");
+//    if (id_switch_tablas_intermedias == 1) setTablasIntermedias(true);
+//    else                                   setTablasIntermedias(false);
+//    
+//    if (id_radiobutton_max == 1) setMaximizar(true);
+//    else                         setMaximizar(false);
+//    
+//    printf("Función objetivo: \n");
+//    printf("\tTexto: %s",texto_funcion_objetivo);
+//    for (int j = 0 ; j < 8 ; j++){
+//        constants_objective_function[j] = GetConstant(texto_funcion_objetivo, j+1);
+//        printf("\tX%i: %.1f", j+1 ,constants_objective_function[j]);
+//    }
+//    puts("\n");
+//
+//    printf("Restricciones: \n");
+//    for (int i = 0 ; i < 10 ; i++){
+//        printf("\tTexto: %s",s_constraints[i]);
+//        for (int j = 0 ; j < 8 ; j++){
+//            constants[i][j] = GetConstant(s_constraints[i], j+1);
+//            printf("\tX%i: %.1f", j+1 ,constants[i][j]);
+//            
+//        }
+//        printf("\n");
+//    }
+//    printf("Igualados: \n");
+//    for (int i = 0 ; i < 10 ; i++){
+//        equals[i] = atof(s_equals[i]);
+//        printf("\tX%i: %.1f", i,equals[i]);
+//        printf("\n");
+//    }
+//    printf("Igualadores: \n");
+//    for (int i = 0 ; i < 10 ; i++){
+//        symbols[i] = s_equalitor[i];
+//        printf("\tX%i: %d", i,symbols[i]);
+//        printf("\n");
+//    }
+//    
+//    printf("Variables: \n");
+//    for (int i = 0 ; i < 8 ; i++){
+//        strcpy(nombre_variables[i], s_nombre_variables[i]);
+//        printf("\tX%i: %s", i,nombre_variables[i]);
+//        printf("\n");
+//    }
+//    
+//    
+//    CountCantidadVariables();
     
 }
 
@@ -341,6 +348,5 @@ void CreateMatriz(){
     
 }
 
-void MatrizDePrueba1();
 #endif /* MATRIZ_H */
 

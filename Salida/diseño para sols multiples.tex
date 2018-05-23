@@ -1,0 +1,381 @@
+% Technological of Costa Rica 
+% Operations Research
+% 3rd Project
+% Linear Programming
+% Alonso Rivas Solano (2014079916)
+% Daniel Herrera Brenes (2015130539)
+% Edisson López Díaz (2013103311)
+ 
+\documentclass{beamer} 
+\usetheme[progressbar=frametitle]{metropolis} 
+\setbeamertemplate{frame numbering}[fraction] 
+\useoutertheme{metropolis} 
+\useinnertheme{metropolis} 
+\usefonttheme{metropolis} 
+\usecolortheme{metropolis} 
+\usepackage[utf8]{inputenc} 
+\usepackage{lmodern} 
+\usepackage[T1]{fontenc} 
+\usepackage[spanish]{babel} 
+\usepackage{tikz} 
+\usepackage{natbib} 
+\usepackage{hyperref} 
+\usepackage{multirow} 
+\usepackage{colortbl} 
+\usepackage{helvet} 
+\usepackage[export]{adjustbox} % loads also graphicx 
+\usepackage{lipsum} 
+%Definiciones 
+\definecolor{color_columna_candidata}{rgb}{0, 0.424, 0.455} 
+\definecolor{color_pivote}{rgb}{0.973, 0.80, 0.341} 
+\definecolor{color_blanco}{rgb}{1,1,1} 
+% Commands 
+\newcommand\tab[1][1cm]{\hspace*{#1}}  
+\newcommand\minitab[1][0.5cm]{\hspace*{#1}}  
+% Tittle information 
+\title{Símplex} 
+\subtitle{Operations Research} 
+\author[A. \& D. \& E.]{% 
+\texorpdfstring{% 
+\begin{columns} 
+\column{.33\linewidth} 
+\centering 
+\\  Daniel Herrera  \\ 2015130539 \\ 
+\column{.33\linewidth} 
+\centering 
+\\  Edisson López \\ 2013103311 \\ 
+\column{.33\linewidth} 
+\centering 
+\\ Alonso Rivas \\ 2014079916 \\ 
+\end{columns} 
+} 
+{Author 1, Author 2, Author 3} 
+} 
+\date{} 
+\institute{% 
+\texorpdfstring{% 
+\begin{columns} 
+\column{.9\linewidth} 
+\centering 
+\\ 
+Tecnológico de Costa Rica \\ 
+Semestre 1, 2018 \\ 
+24 de mayo, 2018 
+\end{columns} 
+} 
+} 
+%Inicio del documento 
+\begin{document} 
+
+% - - 1st Slide - - ; 
+% - - Cover - - - - ; 
+\begin{frame}[plain,t] 
+\maketitle 
+\end{frame} 
+
+
+% - - - - - - - - - ;
+% - - - - 2 - - - - ;
+% Algoritmo Sı́mplex: uno o dos slides que expliquen
+% un poco el algoritmo Sı́mplex.
+\section{Algoritmo Símplex}
+\begin{frame}
+\lipsum[1-1]
+\end{frame}
+
+\begin{frame}
+\lipsum[1-1]
+\end{frame}
+
+ 
+\section{Problema original}  
+\begin{frame}[shrink]  
+\frametitle{Problema no factible} 
+\begin{alertblock}{Maximizar} 
+\begin{itemize} 
+\item $Z = 300x_{1} + 200 Motoscicletas$ 
+\end{itemize} 
+\end{alertblock} 
+\begin{alertblock}{Restricciones} 
+\begin{enumerate} 
+\item $ 0.0Carros deportivos  + 0.0 Motoscicletas \leq 1$ 
+\item $ 0.0Carros deportivos  + 0.0 Motoscicletas \leq 1$ 
+\item $ 1Carros deportivos  + 0 Motoscicletas \leq 30$ 
+\item $ 0Carros deportivos  + 1 Motoscicletas \leq 20$ 
+\end{enumerate} 
+\end{alertblock} 
+\end{frame} 
+
+\section{Tabla inicial} 
+ 
+\begin{frame}  
+\frametitle{Tabla inicial} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & -300 & -200 & 0 & 0 & 0 & 0 & 1M & 1M & 0 \\\hline 
+0 & 0.0 & 0.0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & 0.0 & 0.0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla inicial.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia 1} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & -300-1M & -200-1M & 0 & 0 & 1M & 1M & 0 & 0 & -50M \\\hline 
+0 & 0.0 & 0.0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & 0.0 & 0.0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 1, con las columnas a$_{i}$ canonizadas.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+\section{Tablas intermedias} 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#1} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Carros deportivos}} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-300-1M} & -200-1M & 0 & 0 & 1M & 1M & 0 & 0 & -50M \\\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0.0} & 0.0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0.0} & 0.0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
+\hline 
+0 & \cellcolor{color_pivote}\textbf{1} & 0 & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 1, durante el pivoteo.} 
+{\scriptsize Cálculos: 1/0.0 = 40 | 1/0.0 = 50 | \textbf{30/1 = 30} | } 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#2} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Carros deportivos}} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -200-1M & 0 & 0 & -300 & 1M & 300+1M & 0 & 9000-20M \\\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0.0 & 1 & 0 & 0.0 & 0 & -0.0 & 0 & 0.2\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0.0 & 0 & 1 & 0.0 & 0 & -0.0 & 0 & 0.4\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 2, con la columna de 2 canonizada.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#2} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Motoscicletas}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-200-1M} & 0 & 0 & -300 & 1M & 300+1M & 0 & 9000-20M \\\hline 
+0 & 0 & \cellcolor{color_pivote}\textbf{0.0} & 1 & 0 & 0.0 & 0 & -0.0 & 0 & 0.2\\ 
+\hline 
+0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0.0} & 0 & 1 & 0.0 & 0 & -0.0 & 0 & 0.4\\ 
+\hline 
+0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 2, durante el pivoteo.} 
+{\scriptsize Cálculos: \textbf{0.2/0.0 = 15.0} | 0.4/0.0 = 20 | 20/1 = 20} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#3} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Motoscicletas}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 12000.0+60.0M & 0 & 0+1.5M & 1M & 0+-0.5M & 0 & 12000-5M \\\hline 
+0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 60.0 & 0 & 1.5 & 0 & -1.5 & 0 & 15.0\\ 
+\hline 
+0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -1.2 & 1 & -0.0 & 0 & 0.0 & 0 & 0.1\\ 
+\hline 
+0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & -1 & 0 & 1 & 0 & 30\\ 
+\hline 
+0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -60.0 & 0 & -1.5 & -1 & 1.5 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 3, con la columna de 3 canonizada.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#3} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{a$_{1}$}} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 0 & 12000.0+60.0M & 0 & 0+1.5M & 1M & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0+-0.5M} & 0 & 12000-5M \\\hline 
+0 & 0 & 1 & 60.0 & 0 & 1.5 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-1.5} & 0 & 15.0\\ 
+\hline 
+0 & 0 & 0 & -1.2 & 1 & -0.0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0.0} & 0 & 0.1\\ 
+\hline 
+0 & 1 & 0 & 0 & 0 & -1 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 30\\ 
+\hline 
+0 & 0 & 0 & -60.0 & 0 & -1.5 & -1 & \cellcolor{color_pivote}\textbf{1.5} & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 3, durante el pivoteo.} 
+{\scriptsize Cálculos: 0.1/0.0 = 10 | 30/1 = 30 | \textbf{5/1.5 = 3.3}} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#4} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{a$_{1}$}} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 0 & 12000+40M & 0 & 1M & 0+0.7M & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0+0.3M & 12000+-3.3M \\\hline 
+0 & 0 & 1 & 0 & 0 & 0 & -1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 20\\ 
+\hline 
+0 & 0 & 0 & -0.8 & 1 & 0 & 0.0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -0.0 & 0.1\\ 
+\hline 
+0 & 1 & 0 & 40 & 0 & 0 & 0.7 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -0.7 & 26.7\\ 
+\hline 
+0 & 0 & 0 & -40 & 0 & -1 & -0.7 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0.7 & 3.3\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 4, con la columna de 8 canonizada.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+\section{Tabla final} 
+ 
+\begin{frame}  
+\frametitle{Tabla final} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{10}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Carros deportivos} & \textbf{Motoscicletas} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 0 & 12000+40M & 0 & 1M & 0+0.7M & 0 & 0+0.3M & 12000+-3.3M \\\hline 
+0 & 0 & 1 & 0 & 0 & 0 & -1 & 0 & 1 & 20\\ 
+\hline 
+0 & 0 & 0 & -0.8 & 1 & 0 & 0.0 & 0 & -0.0 & 0.1\\ 
+\hline 
+0 & 1 & 0 & 40 & 0 & 0 & 0.7 & 0 & -0.7 & 26.7\\ 
+\hline 
+0 & 0 & 0 & -40 & 0 & -1 & -0.7 & 1 & 0.7 & 3.3\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla final.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+
+\section{Solución} 
+\begin{frame} 
+\frametitle{Soluciones múltiples 1 y 2} 
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{exampleblock}{Solución óptima \#1} 
+{\scriptsize Problema de los bomberos, wwiiiijaaa}
+\begin{itemize} 
+\item $Z = 12000$ 
+\item $x_{1} = 26.7$ 
+\item $x_{2} = 20$ 
+\end{itemize} 
+\end{exampleblock} 
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{exampleblock}{Solución óptima \#2} 
+{\scriptsize Problema de los bomberos, wwiiiijaaa}
+\begin{itemize} 
+\item $Z = 12000$ 
+\item $x_{1} = 26.7$ 
+\item $x_{2} = 20$ 
+\end{itemize} 
+\end{exampleblock} 
+\end{column}
+\end{columns}
+\end{frame} 
+
+
+
+\begin{frame} 
+\frametitle{Casos especiales} 
+\begin{exampleblock}{} 
+El problema presentó los siguientes casos especiales: 
+\begin{enumerate} 
+\item Problema no factible  
+\end{enumerate} 
+\end{exampleblock} 
+En los siguientes slides se explicará ésto. 
+\end{frame} 
+
+
+\begin{frame} 
+\frametitle{Problema no factible} 
+El problema se hizo no factible al hacer un recorrido sobre la primer fila de la tabla final y se encuentraron Ms.
+\end{frame} 
+
+\begin{frame}\frametitle{}\begin{center}{\Huge - slide final -}\end{center}\end{frame} 
+\end{document}
+% } DOCUMENT 
+% Última línea del documento

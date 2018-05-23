@@ -39,7 +39,7 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-Wall `pkg-config --cflags --libs gtk+-3.0` -export-dynamic 
 
 # CC Compiler Flags
 CCFLAGS=

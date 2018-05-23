@@ -34,7 +34,7 @@
 \newcommand\minitab[1][0.5cm]{\hspace*{#1}}  
 % Tittle information 
 \title{Símplex} 
-\subtitle{Operations Research} 
+\subtitle{Investigación de operaciones} 
 \author[A. \& D. \& E.]{% 
 \texorpdfstring{% 
 \begin{columns} 
@@ -89,67 +89,143 @@ Semestre 1, 2018 \\
 
  
 \section{Problema original}  
-\begin{frame}  
-\frametitle{Representación matemática} 
-\begin{columns} 
-\begin{column}{0.5\textwidth} 
+\begin{frame}[shrink]  
+\frametitle{Dakota Modificado (Para soluciones multiples)} 
 \begin{alertblock}{Maximizar} 
 \begin{itemize} 
-\item $Z = 1x_{1} - 1x_{2}$ 
+\item $Z = 60x_{1} + 35 Sillas + 20 Escritorios$ 
 \end{itemize} 
 \end{alertblock} 
 \begin{alertblock}{Restricciones} 
 \begin{enumerate} 
-\item $ 1x_{1}  + 1x_{2} \leq 50$ 
-\item $ 1x_{1}  + 1x_{2} \leq 100$ 
+\item $ 8Mesas  + 6 Sillas + 1 Escritorios \leq 48$ 
+\item $ 4Mesas  + 2 Sillas + 1.5 Escritorios \leq 20$ 
+\item $ 2Mesas  + 1.5 Sillas + 0.5 Escritorios \leq 8$ 
+\item $ 0Mesas  + 1 Sillas + 0 Escritorios \leq 5$ 
 \end{enumerate} 
 \end{alertblock} 
-\end{column} 
-\begin{column}{0.5\textwidth}  
-\begin{alertblock}{Nombres de las variables} 
-\begin{itemize} 
-\item $x_{1}$:   
-\item $x_{2}$:   
-\end{itemize} 
-\end{alertblock} 
-\end{column} 
-\end{columns} 
 \end{frame} 
+
 \section{Tabla inicial} 
  
 \begin{frame}  
 \frametitle{Tabla inicial} 
 \begin{table}[H] 
 \begin{center} 
-\begin{tabular}{|*{7}{c|}} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
 \hline 
-\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
-1 & 1 & 1 & 0 & 0 & 1M & 0 \\\hline 
-0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\textbf{Z}  & \textbf{Mesas} & \textbf{Sillas} & \textbf{Escritorios} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & -60 & -35 & -20 & 0 & 0 & 0 & 0 & 0 \\\hline 
+0 & 8 & 6 & 1 & 1 & 0 & 0 & 0 & 48\\ 
 \hline 
-0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+0 & 4 & 2 & 1.5 & 0 & 1 & 0 & 0 & 20\\ 
 \hline 
-\end{tabular} 
+0 & 2 & 1.5 & 0.5 & 0 & 0 & 1 & 0 & 8\\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
 \caption{Tabla inicial.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+\section{Tablas intermedias} 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#1} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
+\hline 
+\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Mesas}} & \textbf{Sillas} & \textbf{Escritorios} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-60} & -35 & -20 & 0 & 0 & 0 & 0 & 0 \\\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{8} & 6 & 1 & 1 & 0 & 0 & 0 & 48\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{4} & 2 & 1.5 & 0 & 1 & 0 & 0 & 20\\ 
+\hline 
+0 & \cellcolor{color_pivote}\textbf{2} & 1.5 & 0.5 & 0 & 0 & 1 & 0 & 8\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 1, durante el pivoteo.} 
+{\scriptsize Cálculos: 48/8 = 6 | 20/4 = 5 | \textbf{8/2 = 4} | } 
 \end{center} 
 \end{table} 
 \end{frame} 
  
  
 \begin{frame}  
-\frametitle{Tabla intermedia 1} 
+\frametitle{Tabla intermedia \#2} 
 \begin{table}[H] 
 \begin{center} 
-\begin{tabular}{|*{7}{c|}} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
 \hline 
-\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
-1 & 1-1M & 1-1M & 0 & -1M & 0 & -50M \\\hline 
-0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Mesas}} & \textbf{Sillas} & \textbf{Escritorios} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 10 & -5 & 0 & 0 & 30 & 0 & 240 \\\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & -1 & 1 & 0 & -4 & 0 & 16\\ 
 \hline 
-0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -1 & 0.5 & 0 & 1 & -2 & 0 & 4\\ 
 \hline 
-\end{tabular} 
-\caption{Tabla intermedia 1, con la columna a$_{1}$ canonizada.} 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0.8 & 0.2 & 0 & 0 & 0.5 & 0 & 4\\ 
+\hline 
+0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 2, con la columna de 2 canonizada.} 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#2} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Mesas} & \textbf{Sillas} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Escritorios}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 10 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-5} & 0 & 0 & 30 & 0 & 240 \\\hline 
+0 & 0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-1} & 1 & 0 & -4 & 0 & 16\\ 
+\hline 
+0 & 0 & -1 & \cellcolor{color_pivote}\textbf{0.5} & 0 & 1 & -2 & 0 & 4\\ 
+\hline 
+0 & 1 & 0.8 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0.2} & 0 & 0 & 0.5 & 0 & 4\\ 
+\hline 
+0 & 0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 2, durante el pivoteo.} 
+{\scriptsize Cálculos: \textbf{4/0.5 = 8} | 4/0.2 = 16 | } 
+\end{center} 
+\end{table} 
+\end{frame} 
+ 
+ 
+\begin{frame}  
+\frametitle{Tabla intermedia \#3} 
+\begin{table}[H] 
+\begin{center} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
+\hline 
+\textbf{Z}  & \textbf{Mesas} & \textbf{Sillas} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Escritorios}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 10 & 10 & 0 & 280 \\\hline 
+0 & 0 & -2 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 2 & -8 & 0 & 24\\ 
+\hline 
+0 & 0 & -2 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 2 & -4 & 0 & 8\\ 
+\hline 
+0 & 1 & 1.2 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & -0.5 & 1.5 & 0 & 2\\ 
+\hline 
+0 & 0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
+\caption{Tabla intermedia 3, con la columna de 4 canonizada.} 
 \end{center} 
 \end{table} 
 \end{frame} 
@@ -160,15 +236,20 @@ Semestre 1, 2018 \\
 \frametitle{Tabla final} 
 \begin{table}[H] 
 \begin{center} 
-\begin{tabular}{|*{7}{c|}} 
+\resizebox{\linewidth}{!}{ 
+\begin{tabular}{|*{9}{c|}} 
 \hline 
-\textbf{Z}  & \textbf{x$_{1}$} & \textbf{x$_{2}$} & \textbf{s$_{1}$} & \textbf{e$_{1}$} & \textbf{a$_{1}$} & \textbf{•} \\\hline \hline 
-1 & 1 & 1 & 0 & 0 & 1M & 0 \\\hline 
-0 & 1 & 1 & 0 & 1 & 1 & 50\\ 
+\textbf{Z}  & \textbf{Mesas} & \textbf{Sillas} & \textbf{Escritorios} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{s$_{3}$} & \textbf{s$_{4}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 0 & 0 & 0 & 10 & 10 & 0 & 280 \\\hline 
+0 & 0 & -2 & 0 & 1 & 2 & -8 & 0 & 24\\ 
 \hline 
-0 & 1 & 1 & 1 & 0 & 0 & 100\\ 
+0 & 0 & -2 & 1 & 0 & 2 & -4 & 0 & 8\\ 
 \hline 
-\end{tabular} 
+0 & 1 & 1.2 & 0 & 0 & -0.5 & 1.5 & 0 & 2\\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 5\\ 
+\hline 
+\end{tabular}} 
 \caption{Tabla final.} 
 \end{center} 
 \end{table} 
@@ -179,8 +260,11 @@ Semestre 1, 2018 \\
 \begin{frame} 
 \frametitle{Solución} 
 \begin{exampleblock}{Solución óptima} 
+{\scriptsize Dakota Modificado (Para soluciones multiples)} 
 \begin{itemize} 
-\item $Z = 0$ 
+\item $Z = 280$ 
+\item $x_{2} = 1.6$ 
+\item $x_{3} = 11.2$ 
 \end{itemize} 
 \end{exampleblock} 
 \end{frame} 
@@ -188,9 +272,74 @@ Semestre 1, 2018 \\
 
 \begin{frame} 
 \frametitle{Casos especiales} 
-El problema no presentó ningún caso especial 
+\begin{exampleblock}{} 
+El problema presentó los siguientes casos especiales: 
+\begin{enumerate} 
+\item Problema con soluciones múltiples  
+\end{enumerate} 
+\end{exampleblock} 
+En los siguientes slides se explicará ésto. 
 \end{frame} 
 
+
+\begin{frame} 
+\frametitle{Problema con soluciones múltiples} 
+El problema llega a tener soluciones múltiples cuando se obtiene una base factible que tomamos como la solución del problema. Sin embargo, existe una variable no básica con un cero en la primera fila. \\ 
+
+En los siguientes dos slides se darán las 4 soluciones alternativas 
+\end{frame} 
+
+
+\begin{frame}[shrink]   
+\frametitle{Soluciones múltiples 1 y 2} 
+\begin{columns} 
+\begin{column}{0.5\textwidth} 
+\begin{exampleblock}{Solución alternativa \#1} 
+\begin{itemize} 
+\item Mesas = 2 
+\item Sillas = 0 
+\item Escritorios = 8 
+\end{itemize}  
+\end{exampleblock}  
+\end{column} 
+\begin{column}{0.5\textwidth} 
+\begin{exampleblock}{Solución alternativa \#2} 
+\begin{itemize}  
+\item Mesas = 0 
+\item Sillas = 1.6 
+\item Escritorios = 11.2 
+\end{itemize}  
+\end{exampleblock}  
+\end{column} 
+\end{columns} 
+\end{frame} 
+
+
+\begin{frame}[shrink]   
+\frametitle{Soluciones múltiples 3 y 4} 
+\begin{columns} 
+\begin{column}{0.5\textwidth} 
+\begin{exampleblock}{Solución alternativa \#3} 
+\begin{itemize} 
+\item Mesas = 1 
+\item Sillas = 0.8 
+\item Escritorios = 9.6 
+\end{itemize}  
+\end{exampleblock}  
+\end{column} 
+\begin{column}{0.5\textwidth} 
+\begin{exampleblock}{Solución alternativa \#4} 
+\begin{itemize}  
+\item Mesas = 0.5 
+\item Sillas = 1.2 
+\item Escritorios = 10.4 
+\end{itemize}  
+\end{exampleblock}  
+\end{column} 
+\end{columns} 
+\end{frame} 
+
+\begin{frame}\frametitle{}\begin{center}{\Huge - slide final -}\end{center}\end{frame} 
 \end{document}
 % } DOCUMENT 
 % Última línea del documento

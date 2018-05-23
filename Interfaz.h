@@ -18,6 +18,14 @@ GtkWidget   *entry_nombre_variables;
 GtkWidget   *entry_funcion_objetivo;
 GtkWidget   *radiobutton_max;
 
+GtkWidget   *entry_var1;
+GtkWidget   *entry_var2;
+GtkWidget   *entry_var3;
+GtkWidget   *entry_var4;
+GtkWidget   *entry_var5;
+GtkWidget   *entry_var6;
+GtkWidget   *entry_var7;
+GtkWidget   *entry_var8;
 GtkWidget   *entry_rest1;
 GtkWidget   *entry_rest2;
 GtkWidget   *entry_rest3;
@@ -52,14 +60,26 @@ GtkWidget   *combobox10;
 GtkWidget   *switch_tablas_intermedias;
 GtkWidget   *button_ejecutar;
 
+ GtkWidget *cover_image;
+  
+
 char s_constraints[10][40];
 char s_equals[10][10];
+char s_nombre_variables[8][40];
 int  s_equalitor[10];
 
 char texto_nombre_problema[100];
 char texto_nombre_variables[100];
 char texto_funcion_objetivo[100];
 
+char texto_var1[100];
+char texto_var2[100];
+char texto_var3[100];
+char texto_var4[100];
+char texto_var5[100];
+char texto_var6[100];
+char texto_var7[100];
+char texto_var8[100];
 char texto_rest1[100];
 char texto_rest2[100];
 char texto_rest3[100];
@@ -99,6 +119,14 @@ int IniciarInterfaz(int argc, char *argv[])
     entry_nombre_problema  = GTK_WIDGET(gtk_builder_get_object(builder, "entry_nombre_problema"));
     entry_nombre_variables = GTK_WIDGET(gtk_builder_get_object(builder, "entry_nombre_variables"));
     entry_funcion_objetivo = GTK_WIDGET(gtk_builder_get_object(builder, "entry_funcion_objetivo"));
+    entry_var1 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var1"));
+    entry_var2 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var2"));
+    entry_var3 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var3"));
+    entry_var4 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var4"));
+    entry_var5 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var5"));
+    entry_var6 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var6"));
+    entry_var7 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var7"));
+    entry_var8 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_var8"));
     entry_rest1 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_rest1"));
     entry_rest2 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_rest2"));
     entry_rest3 = GTK_WIDGET(gtk_builder_get_object(builder, "entry_rest3"));
@@ -131,6 +159,8 @@ int IniciarInterfaz(int argc, char *argv[])
     combobox10= GTK_WIDGET(gtk_builder_get_object(builder, "combobox10"));
     radiobutton_max= GTK_WIDGET(gtk_builder_get_object(builder, "radiobutton_max"));
     switch_tablas_intermedias= GTK_WIDGET(gtk_builder_get_object(builder, "switch_tablas_intermedias"));
+    cover_image = GTK_WIDGET(gtk_builder_get_object(builder, "cover_image"));
+    cover_image = gtk_image_new_from_file ("cover_image.png");
     gtk_builder_connect_signals(builder, NULL);
  
     g_object_unref(builder);
@@ -179,6 +209,14 @@ void AccionEjecutar(){
     const gchar *g_texto_nombre_problema;
     const gchar *g_texto_nombre_variables;
     const gchar *g_texto_funcion_objetivo;
+    const gchar *g_texto_var1;
+    const gchar *g_texto_var2;
+    const gchar *g_texto_var3;
+    const gchar *g_texto_var4;
+    const gchar *g_texto_var5;
+    const gchar *g_texto_var6;
+    const gchar *g_texto_var7;
+    const gchar *g_texto_var8;
     const gchar *g_texto_rest1;
     const gchar *g_texto_rest2;
     const gchar *g_texto_rest3;
@@ -216,6 +254,14 @@ void AccionEjecutar(){
     g_texto_nombre_problema = gtk_entry_get_text(GTK_ENTRY(entry_nombre_problema));
     g_texto_nombre_variables = gtk_entry_get_text(GTK_ENTRY(entry_nombre_variables));
     g_texto_funcion_objetivo = gtk_entry_get_text(GTK_ENTRY(entry_funcion_objetivo));
+    g_texto_var1 = gtk_entry_get_text(GTK_ENTRY(entry_var1));
+    g_texto_var2 = gtk_entry_get_text(GTK_ENTRY(entry_var2));
+    g_texto_var3 = gtk_entry_get_text(GTK_ENTRY(entry_var3));
+    g_texto_var4 = gtk_entry_get_text(GTK_ENTRY(entry_var4));
+    g_texto_var5 = gtk_entry_get_text(GTK_ENTRY(entry_var5));
+    g_texto_var6 = gtk_entry_get_text(GTK_ENTRY(entry_var6));
+    g_texto_var7 = gtk_entry_get_text(GTK_ENTRY(entry_var7));
+    g_texto_var8 = gtk_entry_get_text(GTK_ENTRY(entry_var8));
     g_texto_rest1 = gtk_entry_get_text(GTK_ENTRY(entry_rest1));
     g_texto_rest2 = gtk_entry_get_text(GTK_ENTRY(entry_rest2));
     g_texto_rest3 = gtk_entry_get_text(GTK_ENTRY(entry_rest3));
@@ -249,6 +295,14 @@ void AccionEjecutar(){
     sprintf(texto_nombre_problema,  "%8s\n", g_texto_nombre_problema);
     sprintf(texto_nombre_variables, "%8s\n", g_texto_nombre_variables);
     sprintf(texto_funcion_objetivo, "%8s\n", g_texto_funcion_objetivo);
+    sprintf(texto_var1, "%8s\n", g_texto_var1);
+    sprintf(texto_var2, "%8s\n", g_texto_var2);
+    sprintf(texto_var3, "%8s\n", g_texto_var3);
+    sprintf(texto_var4, "%8s\n", g_texto_var4);
+    sprintf(texto_var5, "%8s\n", g_texto_var5);
+    sprintf(texto_var6, "%8s\n", g_texto_var6);
+    sprintf(texto_var7, "%8s\n", g_texto_var7);
+    sprintf(texto_var8, "%8s\n", g_texto_var8);
     sprintf(texto_rest1, "%8s\n", g_texto_rest1);
     sprintf(texto_rest2, "%8s\n", g_texto_rest2);
     sprintf(texto_rest3, "%8s\n", g_texto_rest3);
@@ -288,6 +342,15 @@ void AccionEjecutar(){
 //    FormatoCorrectoRestriccion(texto_rest7, texto_eq7);
 //    FormatoCorrectoRestriccion(texto_rest8, texto_eq8);
 //    FormatoCorrectoRestriccion(texto_rest9, texto_eq9);
+    
+    strcpy (s_nombre_variables[0], texto_var1);
+    strcpy (s_nombre_variables[1], texto_var2);
+    strcpy (s_nombre_variables[2], texto_var3);
+    strcpy (s_nombre_variables[3], texto_var4);
+    strcpy (s_nombre_variables[4], texto_var5);
+    strcpy (s_nombre_variables[5], texto_var6);
+    strcpy (s_nombre_variables[6], texto_var7);
+    strcpy (s_nombre_variables[7], texto_var8);
     
     strcpy (s_constraints[0], texto_rest1);
     strcpy (s_constraints[1], texto_rest2);
