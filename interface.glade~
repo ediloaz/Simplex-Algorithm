@@ -63,7 +63,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">15</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Nombre del problema</property>
+                    <property name="label" translatable="yes">Problem name</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -74,6 +74,7 @@ Author: ediloaz
                   <object class="GtkEntry" id="entry_nombre_problema">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="placeholder_text" translatable="yes">E.g.  The dinner problem</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -86,7 +87,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">20</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Función objetivo</property>
+                    <property name="label" translatable="yes">Objective function</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -97,6 +98,7 @@ Author: ediloaz
                   <object class="GtkEntry" id="entry_funcion_objetivo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="placeholder_text" translatable="yes">E.g.  x1 + 3x2 - 0.1x5 -0.2x6</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -109,7 +111,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">20</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Objetivo de la función</property>
+                    <property name="label" translatable="yes">Objective Problem</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -120,9 +122,10 @@ Author: ediloaz
                   <object class="GtkGrid" id="grid10">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_left">17</property>
                     <child>
                       <object class="GtkRadioButton" id="radiobutton_max">
-                        <property name="label" translatable="yes">Maximizar</property>
+                        <property name="label" translatable="yes">Maximize</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -140,11 +143,11 @@ Author: ediloaz
                     </child>
                     <child>
                       <object class="GtkRadioButton" id="radiobutton_min">
-                        <property name="label" translatable="yes">Minimizar</property>
+                        <property name="label" translatable="yes">Minimize</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="margin_left">14</property>
+                        <property name="margin_left">17</property>
                         <property name="xalign">0</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
@@ -167,7 +170,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">25</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Visualizar tablas intermedias</property>
+                    <property name="label" translatable="yes">Display intermediate tables</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -235,7 +238,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">15</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Restricciones</property>
+                    <property name="label" translatable="yes">Constraints</property>
                     <property name="justify">center</property>
                     <property name="width_chars">3</property>
                     <property name="max_width_chars">3</property>
@@ -256,6 +259,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  10x1 - 4.1x2</property>
                         <style>
                           <class name="entry_restriction_variables"/>
                         </style>
@@ -269,6 +273,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  10x2 + 0.67x3</property>
                         <style>
                           <class name="entry_restriction_variables"/>
                         </style>
@@ -282,6 +287,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest3">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  - 4x2 - x3</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -292,6 +298,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest4">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x1 + x2 + x3</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -302,6 +309,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest10">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x1 - x8</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -313,6 +321,7 @@ Author: ediloaz
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="width_chars">10</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x7</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -323,6 +332,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest8">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x8</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -333,6 +343,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest7">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  0.2x5 + 0.1x6</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -343,6 +354,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest6">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x5 - x1</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -353,6 +365,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_rest5">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  x3 + x4 + x5</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -363,6 +376,8 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">x1 + x2</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 50000</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -373,6 +388,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 15000</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -383,6 +399,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq3">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 2450</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -393,6 +410,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq4">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 2450.7</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -403,6 +421,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq5">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 2450.7580</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -413,6 +432,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq6">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  -120</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -423,6 +443,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq7">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  -120.5</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -433,6 +454,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq8">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 0.58</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -443,6 +465,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_eq9">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 0.001</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -458,6 +481,7 @@ Author: ediloaz
                         <property name="valign">baseline</property>
                         <property name="max_length">3</property>
                         <property name="width_chars">2</property>
+                        <property name="placeholder_text" translatable="yes">E.g. 0</property>
                         <property name="input_purpose">number</property>
                         <style>
                           <class name="clase_eq10"/>
@@ -678,7 +702,7 @@ Author: ediloaz
                     <property name="can_focus">False</property>
                     <property name="margin_top">15</property>
                     <property name="margin_bottom">4</property>
-                    <property name="label" translatable="yes">Nombres de las variables</property>
+                    <property name="label" translatable="yes">Variable names</property>
                     <property name="justify">center</property>
                   </object>
                   <packing>
@@ -786,6 +810,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Spoons</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -796,6 +821,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Knifes</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -806,6 +832,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var3">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Forks</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -816,6 +843,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var4">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Skewer</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -826,6 +854,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var5">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Tongs</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -836,6 +865,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var6">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Chopsticks</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -846,6 +876,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var7">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Cutlery</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -856,6 +887,7 @@ Author: ediloaz
                       <object class="GtkEntry" id="entry_var8">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="placeholder_text" translatable="yes">E.g.  Sujeo</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -890,7 +922,7 @@ Author: ediloaz
             <property name="margin_bottom">10</property>
             <child>
               <object class="GtkButton" id="button_ejecutar">
-                <property name="label" translatable="yes">Ejecutar</property>
+                <property name="label" translatable="yes">Execute</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -911,7 +943,7 @@ Author: ediloaz
           <object class="GtkGrid" id="grid11">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">88</property>
+            <property name="margin_left">112</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkImage" id="cover_image">

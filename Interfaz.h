@@ -176,7 +176,7 @@ int IniciarInterfaz(int argc, char *argv[])
  
 
 void on_window_main_destroy(){
-    gtk_main_quit();
+    gtk_widget_hide(window);
 }
 
 
@@ -458,7 +458,7 @@ void AccionEjecutar(){
 //    else printf("\n\nEeeees NOOO vacia %i,%i,%i,%i,%i,%i  \n\n", (int)texto_rest1[0], (int)texto_rest1[1], (int)texto_rest1[2], (int)texto_rest1[3], (int)texto_rest1[4], (int)texto_rest1[5]);
 
     gtk_main_quit();
-    
+//  gtk_widget_hide(window);  
 //    sleep(1);
     
 //    interface_running = false;

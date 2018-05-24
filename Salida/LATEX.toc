@@ -1,8 +1,7 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {spanish}
-\beamer@sectionintoc {1}{Algoritmo S\IeC {\'\i }mplex}{2}{0}{1}
-\beamer@sectionintoc {2}{Problema original}{5}{0}{2}
-\beamer@sectionintoc {3}{Tabla inicial}{7}{0}{3}
-\beamer@sectionintoc {4}{Tablas intermedias}{10}{0}{4}
-\beamer@sectionintoc {5}{Tabla final}{15}{0}{5}
-\beamer@sectionintoc {6}{Soluci\IeC {\'o}n}{17}{0}{6}
+\beamer@sectionintoc {1}{Simplex Algorithm}{2}{0}{1}
+\beamer@sectionintoc {2}{Original Problem}{4}{0}{2}
+\beamer@sectionintoc {3}{Initial Table}{6}{0}{3}
+\beamer@sectionintoc {4}{Final Table}{8}{0}{4}
+\beamer@sectionintoc {5}{Solution}{10}{0}{5}

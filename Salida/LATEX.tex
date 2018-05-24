@@ -33,8 +33,8 @@
 \newcommand\tab[1][1cm]{\hspace*{#1}}  
 \newcommand\minitab[1][0.5cm]{\hspace*{#1}}  
 % Tittle information 
-\title{Símplex} 
-\subtitle{Investigación de operaciones} 
+\title{Simplex} 
+\subtitle{Operations Research} 
 \author[A. \& D. \& E.]{% 
 \texorpdfstring{% 
 \begin{columns} 
@@ -59,8 +59,8 @@
 \centering 
 \\ 
 Tecnológico de Costa Rica \\ 
-Semestre 1, 2018 \\ 
-24 de mayo, 2018 
+Semester 1, 2018 \\ 
+May 24, 2018 
 \end{columns} 
 } 
 } 
@@ -76,256 +76,87 @@ Semestre 1, 2018 \\
 
 % - - - - - - - - - ;
 % - - - - 2 - - - - ;
-% Algoritmo Sı́mplex: uno o dos slides que expliquen
+% Algoritmo Símplex: uno o dos slides que expliquen
 % un poco el algoritmo Sı́mplex.
-\section{Algoritmo Símplex}
+\section{Simplex Algorithm}
 \begin{frame}
-\lipsum[1-1]
-\end{frame}
-
-\begin{frame}
-\lipsum[1-1]
+The simplex is a method to solve lineal programming problems. This is a mechanical method that search for the best or optimal solution for a lineal programming(LP) problem. It was invented by George Danzig in 1947. It uses operations over a matrix to search for the optimal solution. It begin from a feasible region and it starts to do some operations, depending if you are maximizing or minimizing that search for the candidate column and the pivot, and after all the numbers are positive or negative, depends if maximizing or minimizing, that it give you the best solution.
 \end{frame}
 
  
-\section{Problema original}  
+\section{Original Problem}  
 \begin{frame}[shrink]  
-\frametitle{Fábrica de carros
-} 
-\begin{alertblock}{Maximizar} 
+\frametitle{Problema sin nombre} 
+\begin{alertblock}{Maximize} 
 \begin{itemize} 
-\item $Z = -300 Camiones
- - 200 Automoviles
-$ 
+\item $Z = -1 x1$ 
 \end{itemize} 
 \end{alertblock} 
-\begin{alertblock}{Restricciones} 
+\begin{alertblock}{Constraints} 
 \begin{enumerate} 
-\item $ 0,0Camiones
-  + 0,0 Automoviles
- \leq 1$ 
-\item $ 0,0Camiones
-  + 0,0 Automoviles
- \leq 1$ 
-\item $ 1Camiones
-  + 0 Automoviles
- \geq 30$ 
-\item $ 0Camiones
-  + 1 Automoviles
- \geq 20$ 
+\item $ 1x1  \leq 22$ 
 \end{enumerate} 
 \end{alertblock} 
 \end{frame} 
 
-\section{Tabla inicial} 
+\section{Initial Table} 
  
 \begin{frame}  
-\frametitle{Tabla inicial} 
+\frametitle{Initial Table} 
 \begin{table}[H] 
 \begin{center} 
 \resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
+\begin{tabular}{|*{4}{c|}} 
 \hline 
-\textbf{Z}  & \textbf{Camiones
-} & \textbf{Automoviles
-} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & -300 & -200 & 0 & 0 & 0 & 0 & 1M & 1M & 0 \\\hline 
-0 & 0,0 & 0,0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & 0,0 & 0,0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
+\textbf{Z}  & \textbf{x1} & \textbf{s$_{1}$} & \textbf{•} \\\hline \hline 
+1 & -1 & 0 & 0 \\\hline 
+0 & 1 & 1 & 22\\ 
 \hline 
 \end{tabular}} 
-\caption{Tabla inicial.} 
+\caption{Initial Table.} 
 \end{center} 
 \end{table} 
 \end{frame} 
  
+\section{Final Table} 
  
 \begin{frame}  
-\frametitle{Tabla intermedia 1} 
+\frametitle{Final Table} 
 \begin{table}[H] 
 \begin{center} 
 \resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
+\begin{tabular}{|*{4}{c|}} 
 \hline 
-\textbf{Z}  & \textbf{Camiones
-} & \textbf{Automoviles
-} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & -300-1M & -200-1M & 0 & 0 & -1M & -1M & 0 & 0 & 0-50M \\\hline 
-0 & 0,0 & 0,0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & 0,0 & 0,0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
+\textbf{Z}  & \textbf{x1} & \textbf{s$_{1}$} & \textbf{•} \\\hline \hline 
+1 & 0 & 1 & 22 \\\hline 
+0 & 1 & 1 & 22\\ 
 \hline 
 \end{tabular}} 
-\caption{Tabla intermedia 1, con las columnas a$_{i}$ canonizadas.} 
-\end{center} 
-\end{table} 
-\end{frame} 
- 
-\section{Tablas intermedias} 
- 
-\begin{frame}  
-\frametitle{Tabla intermedia \#1} 
-\begin{table}[H] 
-\begin{center} 
-\resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
-\hline 
-\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Camiones
-}} & \textbf{Automoviles
-} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-300-1M} & -200-1M & 0 & 0 & -1M & -1M & 0 & 0 & 0-50M \\\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0,0} & 0,0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0,0} & 0,0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\ 
-\hline 
-0 & \cellcolor{color_pivote}\textbf{1} & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
-\hline 
-\end{tabular}} 
-\caption{Tabla intermedia 1, durante el pivoteo.} 
-{\scriptsize Cálculos: 1/0,0 = 62,5 | 1/0,0 = 50 | \textbf{30/1 = 30} | } 
-\end{center} 
-\end{table} 
-\end{frame} 
- 
- 
-\begin{frame}  
-\frametitle{Tabla intermedia \#2} 
-\begin{table}[H] 
-\begin{center} 
-\resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
-\hline 
-\textbf{Z}  & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Camiones
-}} & \textbf{Automoviles
-} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & -200-1M & 0 & 0 & 300 & -1M & 300+1M & 0 & 9000-20M \\\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0,0 & 1 & 0 & -0,0 & 0 & -0,0 & 0 & 0,5\\ 
-\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0,0 & 0 & 1 & -0,0 & 0 & -0,0 & 0 & 0,4\\ 
-\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
-\hline 
-\end{tabular}} 
-\caption{Tabla intermedia 2, con la columna de 2 canonizada.} 
-\end{center} 
-\end{table} 
-\end{frame} 
- 
- 
-\begin{frame}  
-\frametitle{Tabla intermedia \#2} 
-\begin{table}[H] 
-\begin{center} 
-\resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
-\hline 
-\textbf{Z}  & \textbf{Camiones
-} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Automoviles
-}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{-200-1M} & 0 & 0 & 300 & -1M & 300+1M & 0 & 9000-20M \\\hline 
-0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0,0} & 1 & 0 & -0,0 & 0 & -0,0 & 0 & 0,5\\ 
-\hline 
-0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0,0} & 0 & 1 & -0,0 & 0 & -0,0 & 0 & 0,4\\ 
-\hline 
-0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & 0 & \cellcolor{color_pivote}\textbf{1} & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
-\hline 
-\end{tabular}} 
-\caption{Tabla intermedia 2, durante el pivoteo.} 
-{\scriptsize Cálculos: 0,5/0,0 = 20,8 | 0,4/0,0 = 20 | \textbf{20/1 = 20}} 
-\end{center} 
-\end{table} 
-\end{frame} 
- 
- 
-\begin{frame}  
-\frametitle{Tabla intermedia \#3} 
-\begin{table}[H] 
-\begin{center} 
-\resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
-\hline 
-\textbf{Z}  & \textbf{Camiones
-} & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{\textbf{Automoviles
-}} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & 300 & 200 & 300+1M & 200+1M & 13000 \\\hline 
-0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 1 & 0 & -0,0 & -0,0 & -0,0 & -0,0 & 0,0\\ 
-\hline 
-0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 1 & -0,0 & -0,0 & -0,0 & -0,0 & 0\\ 
-\hline 
-0 & 1 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{0} & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & 0 & \cellcolor{color_columna_candidata}\textcolor{color_blanco}{1} & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
-\hline 
-\end{tabular}} 
-\caption{Tabla intermedia 3, con la columna de 3 canonizada.} 
-\end{center} 
-\end{table} 
-\end{frame} 
- 
-\section{Tabla final} 
- 
-\begin{frame}  
-\frametitle{Tabla final} 
-\begin{table}[H] 
-\begin{center} 
-\resizebox{\linewidth}{!}{ 
-\begin{tabular}{|*{10}{c|}} 
-\hline 
-\textbf{Z}  & \textbf{Camiones
-} & \textbf{Automoviles
-} & \textbf{s$_{1}$} & \textbf{s$_{2}$} & \textbf{e$_{1}$} & \textbf{e$_{2}$} & \textbf{a$_{1}$} & \textbf{a$_{2}$} & \textbf{•} \\\hline \hline 
-1 & 0 & 0 & 0 & 0 & 300 & 200 & 300+1M & 200+1M & 13000 \\\hline 
-0 & 0 & 0 & 1 & 0 & -0,0 & -0,0 & -0,0 & -0,0 & 0,0\\ 
-\hline 
-0 & 0 & 0 & 0 & 1 & -0,0 & -0,0 & -0,0 & -0,0 & 0\\ 
-\hline 
-0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 30\\ 
-\hline 
-0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 20\\ 
-\hline 
-\end{tabular}} 
-\caption{Tabla final.} 
+\caption{Final Table.} 
 \end{center} 
 \end{table} 
 \end{frame} 
  
 
-\section{Solución} 
+\section{Solution} 
 \begin{frame} 
-\frametitle{Solución} 
-\begin{exampleblock}{Solución óptima} 
-{\scriptsize Fábrica de carros
-} 
+\frametitle{Solution} 
+\begin{exampleblock}{Optimal solution} 
+{\scriptsize Problema sin nombre} 
 \begin{itemize} 
-\item $Z = 13000$ 
-\item $x_{1} = 30$ 
-\item $x_{2} = 20$ 
+\item $Z = 22$ 
+\item $x_{1} = 22$ 
 \end{itemize} 
 \end{exampleblock} 
 \end{frame} 
 
 
 \begin{frame} 
-\frametitle{Casos especiales} 
-El problema no presentó ningún caso especial 
+\frametitle{Especial Cases} 
+The problem did not have special cases 
 \end{frame} 
 
-\begin{frame}\frametitle{}\begin{center}{\Huge - slide final -}\end{center}\end{frame} 
+\begin{frame}\frametitle{}\begin{center}{\Huge - final slide -}\end{center}\end{frame} 
 \end{document}
 % } DOCUMENT 
 % Última línea del documento

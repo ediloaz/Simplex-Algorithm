@@ -141,10 +141,10 @@ int UnoDeColumnaCanonizada(int j){
 void Latex_PrintStartTable(int numero_tabla){
     Latex_Write(" \n");
     Latex_Write("\\begin{frame}  \n");
-    if (numero_tabla == 0)      Latex_Write("\\frametitle{Tabla inicial} \n");
-    else if(numero_tabla == -1) Latex_Write("\\frametitle{Tabla final} \n");
-    else if(numero_tabla == -2) Latex_Write("\\frametitle{Tabla intermedia 1} \n");
-    else                        Latex_WriteI("\\frametitle{Tabla intermedia \\#%d} \n", numero_tabla);
+    if (numero_tabla == 0)      Latex_Write("\\frametitle{Initial Table} \n");
+    else if(numero_tabla == -1) Latex_Write("\\frametitle{Final Table} \n");
+    else if(numero_tabla == -2) Latex_Write("\\frametitle{Intermediate Table 1} \n");
+    else                        Latex_WriteI("\\frametitle{Intermediate Table \\#%d} \n", numero_tabla);
     Latex_Write("\\begin{table}[H] \n");
     Latex_Write("\\begin{center} \n");
     Latex_Write("\\resizebox{\\linewidth}{!}{ \n");
@@ -275,24 +275,24 @@ void Latex_PrintCellsTable(int i_pivote, int columna_escogida){
 void Latex_PrintEndTable(int numero_tabla, int columna_escogida, bool canonizada, int i_pivote){
     Latex_Write("\\end{tabular}} \n");
     if (numero_tabla == 0){         // Tabla inicial
-        Latex_Write("\\caption{Tabla inicial.} \n");
+        Latex_Write("\\caption{Initial Table.} \n");
     }else if (numero_tabla == -1){  // Tabla final
-        Latex_Write("\\caption{Tabla final.} \n");      
+        Latex_Write("\\caption{Final Table.} \n");      
     }else{                          // Tabla intermedia
         if (canonizada) {
             if (columna_escogida == -2){
-                if (cantidad_artificiales == 1) Latex_Write("\\caption{Tabla intermedia 1, con la columna a$_{1}$ canonizada.} \n");
-                else                            Latex_Write("\\caption{Tabla intermedia 1, con las columnas a$_{i}$ canonizadas.} \n");
+                if (cantidad_artificiales == 1) Latex_Write("\\caption{Intermediate Table 1, with the column a$_{1}$ canonized.} \n");
+                else                            Latex_Write("\\caption{Intermediate Table 1, with the columns a$_{i}$ canonized.} \n");
             }
                 
-            else                        Latex_WriteII("\\caption{Tabla intermedia %d, con la columna de %d canonizada.} \n", numero_tabla, columna_escogida+1);
+            else                        Latex_WriteII("\\caption{Intermediate Table %d, with the column %d canonized.} \n", numero_tabla, columna_escogida+1);
         }
             
-        else            Latex_WriteI("\\caption{Tabla intermedia %d, durante el pivoteo.} \n", numero_tabla);
+        else            Latex_WriteI("\\caption{Intermediate Table %d, during the pivoteo.} \n", numero_tabla);
     }
     
     if (!canonizada && numero_tabla != 0  && numero_tabla != -1){
-        Latex_Write("{\\scriptsize Cálculos: ");
+        Latex_Write("{\\scriptsize Calculations: ");
         // {\\scriptsize Cálculos: 48/8 = 0.2 | 48/8 = 0.2 | \textbf{48/8 = 0.2} | 48/8 = 0.2  }
         float division_menor = 9999;
         float division_actual;
@@ -356,7 +356,7 @@ void Latex_PrintEndProblemSection(){
 
 void Latex_PrintStartProblemSection(){
     Latex_Write(" \n");
-    Latex_Write("\\section{Problema original}  \n");
+    Latex_Write("\\section{Original Problem}  \n");
     Latex_Write("\\begin{frame}[shrink]  \n");
     Latex_WriteS("\\frametitle{%s} \n",nombre_programa);
 //    Latex_Write("\\begin{columns} \n");
@@ -364,8 +364,8 @@ void Latex_PrintStartProblemSection(){
 }
 
 void Latex_PrintContentProblemSection(){
-    if (maximizar == true)  Latex_Write("\\begin{alertblock}{Maximizar} \n");
-    else                    Latex_Write("\\begin{alertblock}{Minimizar} \n");
+    if (maximizar == true)  Latex_Write("\\begin{alertblock}{Maximize} \n");
+    else                    Latex_Write("\\begin{alertblock}{Minimize} \n");
     Latex_Write("\\begin{itemize} \n");
     Latex_Write("\\item $Z = ");
     if (Matriz[0][1]>0) Latex_WriteFS("%.1f %s",Matriz[0][1], nombre_variables[0]);
@@ -377,7 +377,7 @@ void Latex_PrintContentProblemSection(){
     Latex_Write("$ \n");
     Latex_Write("\\end{itemize} \n");
     Latex_Write("\\end{alertblock} \n");
-    Latex_Write("\\begin{alertblock}{Restricciones} \n");
+    Latex_Write("\\begin{alertblock}{Constraints} \n");
     Latex_Write("\\begin{enumerate} \n");
     for (int i = 2 ; i < FilasMatriz ; i++){
         Latex_WriteFS("\\item $ %.1f%s ",Matriz[i][1], nombre_variables[0]);
@@ -426,10 +426,10 @@ void Latex_PrintProblemSection(bool maximizar){
 // - - - - - - - - - - - -      
 void Latex_PrintSlideSolution(){            // Escribir en prosa, "Debe ser 10 Carros, 3.5 zanahorias y 1 laptop para obtener 200.
     Latex_Write("\n");
-    Latex_Write("\\section{Solución} \n");
+    Latex_Write("\\section{Solution} \n");
     Latex_Write("\\begin{frame} \n");
-    Latex_Write("\\frametitle{Solución} \n");
-    Latex_Write("\\begin{exampleblock}{Solución óptima} \n");
+    Latex_Write("\\frametitle{Solution} \n");
+    Latex_Write("\\begin{exampleblock}{Optimal solution} \n");
     Latex_WriteS("{\\scriptsize %s} \n", nombre_programa);
     Latex_Write("\\begin{itemize} \n");
     Latex_WriteF("\\item $Z = %.1f$ \n", Matriz[0][ColumnasMatriz-1]);
@@ -450,20 +450,20 @@ void Latex_PrintSlideSolution(){            // Escribir en prosa, "Debe ser 10 C
 void Latex_PrintParticularCasesSolution(){
     Latex_Write("\n");
     Latex_Write("\\begin{frame} \n");
-    Latex_Write("\\frametitle{Casos especiales} \n");
+    Latex_Write("\\frametitle{Especial Cases} \n");
     if (casos_especiales[0] || casos_especiales[1] || casos_especiales[2] || casos_especiales[3]){
         Latex_Write("\\begin{exampleblock}{} \n");
-        Latex_Write("El problema presentó los siguientes casos especiales: \n");
+        Latex_Write("The problem had the following special cases: \n");
         Latex_Write("\\begin{enumerate} \n");
-        if (casos_especiales[0])    Latex_Write("\\item Problema no acotado  \n");
-        if (casos_especiales[1])    Latex_Write("\\item Problema no factible  \n");
-        if (casos_especiales[2])    Latex_Write("\\item Problema degenerado  \n");
-        if (casos_especiales[3])    Latex_Write("\\item Problema con soluciones múltiples  \n");
+        if (casos_especiales[0])    Latex_Write("\\item Not Limited Problem\n");
+        if (casos_especiales[1])    Latex_Write("\\item Not Feasible Problem  \n");
+        if (casos_especiales[2])    Latex_Write("\\item Degenerated Problem  \n");
+        if (casos_especiales[3])    Latex_Write("\\item Problem with multiple solutions \n");
         Latex_Write("\\end{enumerate} \n");
         Latex_Write("\\end{exampleblock} \n");
-        Latex_Write("En los siguientes slides se explicará ésto. \n");
+        Latex_Write("In the following slides this will be explained. \n");
     }else{
-        Latex_Write("El problema no presentó ningún caso especial \n");
+        Latex_Write("The problem did not have special cases \n");
     }
     Latex_Write("\\end{frame} \n");
     Latex_Write("\n");
@@ -472,8 +472,8 @@ void Latex_PrintParticularCasesSolution(){
 void Latex_PrintNotLimitedProblems(){
     Latex_Write("\n");
     Latex_Write("\\begin{frame} \n");
-    Latex_Write("\\frametitle{Problema no acotado} \n");
-    Latex_WriteI("El problema se hizo no acotado al no poder escoger el pivote, en la tabla intermedia #%d no hubo una celda que cumpliera como pivote.\n", TablaDeMatrizNoAcotada);
+    Latex_Write("\\frametitle{Not Limited Problem} \n");
+    Latex_WriteI("The problem was not limited by not being able to choose the pivot, in the intermediate table \\#%d there was not a cell that fulfilled as a pivot.\n", TablaDeMatrizNoAcotada);
     Latex_Write("\\end{frame} \n");
     Latex_Write("\n");
 }
@@ -482,8 +482,8 @@ void Latex_PrintNotLimitedProblems(){
 void Latex_PrintNotFeasibleProblems(){
     Latex_Write("\n");
     Latex_Write("\\begin{frame} \n");
-    Latex_Write("\\frametitle{Problema no factible} \n");
-    Latex_Write("El problema se hizo no factible al hacer un recorrido sobre la primer fila de la tabla final y se encontraron Ms.\n");
+    Latex_Write("\\frametitle{Not Feasible Problem} \n");
+    Latex_Write("The problem became not feasible when making a tour of the first row of the final table and found Ms.\n");
     Latex_Write("\\end{frame} \n");
     Latex_Write("\n");
 }
@@ -491,8 +491,8 @@ void Latex_PrintNotFeasibleProblems(){
 void Latex_PrintDegeneratedProblems(){
     Latex_Write("\n");
     Latex_Write("\\begin{frame} \n");
-    Latex_Write("\\frametitle{Problema degenerado} \n");
-    Latex_WriteI("El problema se degeneró durante el cálculo del pivote en la tabla intermedia \\#%d hubieron dos celdas posibles a escoger como éste. \n", TablaDeMatrizDegenerada);
+    Latex_Write("\\frametitle{Degenerated Problem} \n");
+    Latex_WriteI("The problem was degenerated during the pivoteo in the intermediate table \\#%d there were two possible cells to choose like this one. \n", TablaDeMatrizDegenerada);
     Latex_Write("\\end{frame} \n");
     Latex_Write("\n");
 }
@@ -500,11 +500,11 @@ void Latex_PrintDegeneratedProblems(){
 void Latex_PrintSlideMultipleSolutionsProblems(int numero_slide){
     Latex_Write("\n");
     Latex_Write("\\begin{frame}[shrink]   \n");
-    Latex_WriteII("\\frametitle{Soluciones múltiples %d y %d} \n", numero_slide, numero_slide+1);
+    Latex_WriteII("\\frametitle{Multiple Solutions %d y %d} \n", numero_slide, numero_slide+1);
     Latex_Write("\\begin{columns} \n");
     // Columna de la izquierda
     Latex_Write("\\begin{column}{0.5\\textwidth} \n");
-    Latex_WriteI("\\begin{exampleblock}{Solución alternativa \\#%d} \n", numero_slide);
+    Latex_WriteI("\\begin{exampleblock}{Alternative solution \\#%d} \n", numero_slide);
     Latex_Write("\\begin{itemize} \n");
     for (int i = 0 ; i < cantidad_variables ; i++){
         Latex_WriteS("\\item %s = ", nombre_variables[i]);
@@ -515,7 +515,7 @@ void Latex_PrintSlideMultipleSolutionsProblems(int numero_slide){
     Latex_Write("\\end{column} \n");
     // Columna de la derecha
     Latex_Write("\\begin{column}{0.5\\textwidth} \n");
-    Latex_WriteI("\\begin{exampleblock}{Solución alternativa \\#%d} \n", numero_slide +1);
+    Latex_WriteI("\\begin{exampleblock}{Alternative solution \\#%d} \n", numero_slide +1);
     Latex_Write("\\begin{itemize}  \n");
     for (int i = 0 ; i < cantidad_variables ; i++){
         Latex_WriteS("\\item %s = ", nombre_variables[i]);
@@ -533,8 +533,8 @@ void Latex_PrintMultipleSolutionsProblems(){
     Latex_Write("\n");
     Latex_Write("\\begin{frame} \n");
     Latex_Write("\\frametitle{Problema con soluciones múltiples} \n");
-    Latex_Write("El problema llega a tener soluciones múltiples cuando se obtiene una base factible que tomamos como la solución del problema. Sin embargo, existe una variable no básica con un cero en la primera fila. \\\\ \n\n");
-    Latex_Write("En los siguientes dos slides se darán las 4 soluciones alternativas \n");
+    Latex_Write("The problem comes to having multiple solutions when a feasible basis is obtained that we take as the solution to the problem. However, there is a non-basic variable with a zero in the first row.\\\\ \n\n");
+    Latex_Write("In the next two slides the 4 alternative solutions will be given \n");
     Latex_Write("\\end{frame} \n");
     Latex_Write("\n");
     Latex_PrintSlideMultipleSolutionsProblems(1);   // para el 1y2
@@ -553,7 +553,7 @@ void Latex_PrintFinalSolution(){
 
 
 void Latex_PrintEndSlide(){
-    Latex_Write("\\begin{frame}\\frametitle{}\\begin{center}{\\Huge - slide final -}\\end{center}\\end{frame} \n");
+    Latex_Write("\\begin{frame}\\frametitle{}\\begin{center}{\\Huge - final slide -}\\end{center}\\end{frame} \n");
 }
 
 
@@ -618,8 +618,8 @@ void Latex_WriteHeader(){
     Latex_Write("\\newcommand\\tab[1][1cm]{\\hspace*{#1}}  \n");
     Latex_Write("\\newcommand\\minitab[1][0.5cm]{\\hspace*{#1}}  \n");
     Latex_Write("% Tittle information \n");
-    Latex_Write("\\title{Símplex} \n");
-    Latex_Write("\\subtitle{Investigación de operaciones} \n");
+    Latex_Write("\\title{Simplex} \n");
+    Latex_Write("\\subtitle{Operations Research} \n");
     Latex_Write("\\author[A. \\& D. \\& E.]{% \n");
       Latex_Write("\\texorpdfstring{% \n");
         Latex_Write("\\begin{columns} \n");
@@ -644,8 +644,8 @@ void Latex_WriteHeader(){
           Latex_Write("\\centering \n");
           Latex_Write("\\\\ \n");
           Latex_Write("Tecnológico de Costa Rica \\\\ \n");
-          Latex_Write("Semestre 1, 2018 \\\\ \n");
-          Latex_Write("24 de mayo, 2018 \n");
+          Latex_Write("Semester 1, 2018 \\\\ \n");
+          Latex_Write("May 24, 2018 \n");
         Latex_Write("\\end{columns} \n");
      Latex_Write("} \n");
     Latex_Write("} \n");
@@ -662,15 +662,11 @@ void Latex_WriteSection2(){
     Latex_Write("\n");
     Latex_Write("% - - - - - - - - - ;\n");
     Latex_Write("% - - - - 2 - - - - ;\n");
-    Latex_Write("% Algoritmo Sı́mplex: uno o dos slides que expliquen\n");
+    Latex_Write("% Algoritmo Símplex: uno o dos slides que expliquen\n");
     Latex_Write("% un poco el algoritmo Sı́mplex.\n");
-    Latex_Write("\\section{Algoritmo Símplex}\n");
+    Latex_Write("\\section{Simplex Algorithm}\n");
     Latex_Write("\\begin{frame}\n");
-    Latex_Write("\\lipsum[1-1]\n");
-    Latex_Write("\\end{frame}\n");
-    Latex_Write("\n");
-    Latex_Write("\\begin{frame}\n");
-    Latex_Write("\\lipsum[1-1]\n");
+    Latex_Write("The simplex is a method to solve lineal programming problems. This is a mechanical method that search for the best or optimal solution for a lineal programming(LP) problem. It was invented by George Danzig in 1947. It uses operations over a matrix to search for the optimal solution. It begin from a feasible region and it starts to do some operations, depending if you are maximizing or minimizing that search for the candidate column and the pivot, and after all the numbers are positive or negative, depends if maximizing or minimizing, that it give you the best solution.\n");
     Latex_Write("\\end{frame}\n");
     Latex_Write("\n");
 }

@@ -59,7 +59,7 @@ void PrintProblemaOriginal(){
 void PrintTablaInicial(){
     printf("Tabla inicial:\n");
     PrintMatriz();
-    Latex_Write("\\section{Tabla inicial} \n");
+    Latex_Write("\\section{Initial Table} \n");
     Latex_PrintTable(0, -1, -1, false);
 }
 
@@ -73,7 +73,7 @@ void PrintSolucionFinal(){
 void PrintTablaFinal(){
     printf("Tabla final:\n");
     PrintMatriz();
-    Latex_Write("\\section{Tabla final} \n");
+    Latex_Write("\\section{Final Table} \n");
     Latex_PrintTable(-1,-1, -1, false);
 }
 
