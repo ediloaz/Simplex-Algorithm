@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include "Parser.h"
-//#include "Interfaz.h"
+#include "Interfaz.h"
 
 
 // Creación de la matriz
@@ -29,7 +29,7 @@ char nombre_variables[8][40];
 int numero_tabla_intermedia = 1;
 
 // 1: Maximizar     || 0: Minimizar
-bool maximizar;                 // si es 1 es maximizar o si es -1 es minimizar
+bool maximizar;                 // si es TRUE es maximizar o si es FALSE es minimizar
 // 1: Sí imprimir     || 0: No imprimir
 bool tablas_intermedias;
 
@@ -151,8 +151,8 @@ void FillMatriz(){
      
     // Llenar con la función objetivo
     Matriz[0][0] = 1;
-    for (int j = 1 ; j < ColumnasMatriz ; j++){
-        if (maximizar)  Matriz[0][j] = constants_objective_function[j-1];
+    for (int j = 1 ; j < ColumnasMatriz ; j++){     // USAMOS MÉTODO 2, SI ES MIN CONVERTIDOS LOS X DE SÍMBOLO
+        if (maximizar)  Matriz[0][j] = constants_objective_function[j-1] * -1.0;
         else            Matriz[0][j] = constants_objective_function[j-1] * -1.0;
     }
 //    printf("\n\n");
@@ -205,7 +205,7 @@ void FillMatriz(){
                 cantidad_artificiales_usadas ++;
                 
                 inicio = 1 + cantidad_variables + cantidad_holguras;
-                Matriz[i][inicio + cantidad_excesos_usadas] = 1;
+                Matriz[i][inicio + cantidad_excesos_usadas] = -1;
                 cantidad_excesos_usadas ++;
             }
             // Columna de resultado
@@ -292,52 +292,59 @@ void CountCantidadVariables(){
 
 void ParserVariables(){ 
     printf(" ");
-//    if (id_switch_tablas_intermedias == 1) setTablasIntermedias(true);
-//    else                                   setTablasIntermedias(false);
-//    
-//    if (id_radiobutton_max == 1) setMaximizar(true);
-//    else                         setMaximizar(false);
-//    
-//    printf("Función objetivo: \n");
-//    printf("\tTexto: %s",texto_funcion_objetivo);
-//    for (int j = 0 ; j < 8 ; j++){
-//        constants_objective_function[j] = GetConstant(texto_funcion_objetivo, j+1);
-//        printf("\tX%i: %.1f", j+1 ,constants_objective_function[j]);
-//    }
-//    puts("\n");
-//
-//    printf("Restricciones: \n");
-//    for (int i = 0 ; i < 10 ; i++){
-//        printf("\tTexto: %s",s_constraints[i]);
-//        for (int j = 0 ; j < 8 ; j++){
-//            constants[i][j] = GetConstant(s_constraints[i], j+1);
-//            printf("\tX%i: %.1f", j+1 ,constants[i][j]);
-//            
-//        }
-//        printf("\n");
-//    }
-//    printf("Igualados: \n");
-//    for (int i = 0 ; i < 10 ; i++){
-//        equals[i] = atof(s_equals[i]);
-//        printf("\tX%i: %.1f", i,equals[i]);
-//        printf("\n");
-//    }
-//    printf("Igualadores: \n");
-//    for (int i = 0 ; i < 10 ; i++){
-//        symbols[i] = s_equalitor[i];
-//        printf("\tX%i: %d", i,symbols[i]);
-//        printf("\n");
-//    }
-//    
-//    printf("Variables: \n");
-//    for (int i = 0 ; i < 8 ; i++){
-//        strcpy(nombre_variables[i], s_nombre_variables[i]);
-//        printf("\tX%i: %s", i,nombre_variables[i]);
-//        printf("\n");
-//    }
-//    
-//    
-//    CountCantidadVariables();
+    if (id_switch_tablas_intermedias == 1) setTablasIntermedias(true);
+    else                                   setTablasIntermedias(false);
+    
+    if (id_radiobutton_max == 1) {
+        printf("\n\n\n MAXIIMIMIIZAR \n\n\n ");
+        setMaximizar(true);
+    }
+    else{
+        printf("\n\n\n MINIMIZAR \n\n\n ");
+        setMaximizar(false);
+    }
+    
+    printf("Función objetivo: \n");
+    printf("\tTexto: %s",texto_funcion_objetivo);
+    for (int j = 0 ; j < 8 ; j++){
+        constants_objective_function[j] = GetConstant(texto_funcion_objetivo, j+1);
+        printf("\tX%i: %.1f", j+1 ,constants_objective_function[j]);
+    }
+    puts("\n");
+
+    printf("Restricciones: \n");
+    for (int i = 0 ; i < 10 ; i++){
+        printf("\tTexto: %s",s_constraints[i]);
+        for (int j = 0 ; j < 8 ; j++){
+            constants[i][j] = GetConstant(s_constraints[i], j+1);
+            printf("\tX%i: %.1f", j+1 ,constants[i][j]);
+            
+        }
+        printf("\n");
+    }
+    printf("Igualados: \n");
+    for (int i = 0 ; i < 10 ; i++){
+        equals[i] = atof(s_equals[i]);
+        printf("\tX%i: %.1f", i,equals[i]);
+        printf("\n");
+    }
+    printf("Igualadores: \n");
+    for (int i = 0 ; i < 10 ; i++){
+        symbols[i] = s_equalitor[i];
+        printf("\tX%i: %d", i,symbols[i]);
+        printf("\n");
+    }
+    
+    printf("Variables: \n");
+    for (int i = 0 ; i < 8 ; i++){
+        strcpy(nombre_variables[i], s_nombre_variables[i]);
+        printf("\tX%i: %s", i,nombre_variables[i]);
+        printf("\n");
+    }
+    
+    strcpy(nombre_programa, texto_nombre_problema);
+    
+    CountCantidadVariables();
     
 }
 

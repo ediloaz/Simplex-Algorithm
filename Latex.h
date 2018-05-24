@@ -363,16 +363,16 @@ void Latex_PrintStartProblemSection(){
 //    Latex_Write("\\begin{column}{0.5\\textwidth} \n");
 }
 
-void Latex_PrintContentProblemSection(bool maximizar){
+void Latex_PrintContentProblemSection(){
     if (maximizar == true)  Latex_Write("\\begin{alertblock}{Maximizar} \n");
     else                    Latex_Write("\\begin{alertblock}{Minimizar} \n");
     Latex_Write("\\begin{itemize} \n");
     Latex_Write("\\item $Z = ");
-    if (Matriz[0][1]>0) Latex_WriteFS("%.1fx_{1}",Matriz[0][1], nombre_variables[0]);
-        else            Latex_WriteFS("%.1fx_{1}",-1*Matriz[0][1], nombre_variables[0]);
+    if (Matriz[0][1]>0) Latex_WriteFS("%.1f %s",Matriz[0][1], nombre_variables[0]);
+    else            Latex_WriteFS("-%.1f %s",-1*Matriz[0][1], nombre_variables[0]);
     for (int i = 1 ; i < cantidad_variables ; i++){
-        if (Matriz[0][i+1]>0) Latex_WriteFS(" - %.1f %s",Matriz[0][i+1], nombre_variables[i]);
-        else                  Latex_WriteFS(" + %.1f %s",-1*Matriz[0][i+1], nombre_variables[i]);
+        if (Matriz[0][i+1]>0) Latex_WriteFS(" + %.1f %s",Matriz[0][i+1], nombre_variables[i]);
+        else                  Latex_WriteFS(" - %.1f %s",-1*Matriz[0][i+1], nombre_variables[i]);
     }
     Latex_Write("$ \n");
     Latex_Write("\\end{itemize} \n");

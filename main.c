@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include "Latex.h"
 #include "Matriz.h"
-//#include "Interfaz.h"         // DESCOMENTAR PARA LA INTERFAZ
+#include "Interfaz.h"         // DESCOMENTAR PARA LA INTERFAZ
 #include "AlgoritmoSimplex.h"
 
 #define PRINT(x) (printf("%s", x))
@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     PRINT("Inicio \n\n");
      IniciarLatex();
 
-//    IniciarInterfaz(argc, argv);
+    IniciarInterfaz(argc, argv);
     
     AlgoritmoSimplex();
     

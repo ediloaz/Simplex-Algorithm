@@ -54,7 +54,7 @@ float GetConstantByPosition(char * a, int position_x){
         }else{
             int symbol = FoundSymbol(a, i);
             if (symbol == 0){
-//                printf("error símbolo tiene un 0 \n\n");
+                printf("error símbolo tiene un 0 \n\n");
                 return error;
             }
             printf("\n Cons antes: %.1f", constant);
@@ -77,8 +77,8 @@ float GetConstant(char * a, int i_x){
             constant = GetConstantByPosition(a, i);
             if (constant == -99999.0)                 return -99999.0;
             else if (constant == 0 || constant == -0) constant = 1;
-        }else if ((a[i] == 'x' || a[i] == 'X') && (a[i+1] < 49 || a[i+1] > 56)){
-//            printf("error con la i de Xi, a: %c || a+1:  %c \n\n",  a[i], a[i+1]);
+        }else if ((a[i] == 'x' || a[i] == 'X') && (a[i+1] < 49 || a[i+1] > 56)){//X1-X8
+            printf("error con la i de Xi, a: %c || a+1:  %c \n\n",  a[i], a[i+1]);
             return -99999.0;        // Encontró un X seguido de un valor 
         }else if((int)a[i] == 0){
             // terminó;

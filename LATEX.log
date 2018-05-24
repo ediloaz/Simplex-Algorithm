@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  24 MAY 2018 04:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.10)  24 MAY 2018 04:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1606,10 +1606,15 @@ Overfull \hbox (0.4pt too wide) in paragraph at lines 278--278
 
 [14
 
-] [15
-
 ]
 Overfull \hbox (0.4pt too wide) in paragraph at lines 305--305
+[][]  
+ []
+
+[15
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 331--331
 [][]  
  []
 
@@ -1618,20 +1623,29 @@ Overfull \hbox (0.4pt too wide) in paragraph at lines 305--305
 ] [17
 
 ]
-Overfull \hbox (0.4pt too wide) in paragraph at lines 320--320
+Overfull \hbox (0.4pt too wide) in paragraph at lines 358--358
 [][]  
  []
 
 [18
 
+] [19
+
 ]
-Overfull \hbox (0.4pt too wide) in paragraph at lines 326--326
+Overfull \hbox (0.4pt too wide) in paragraph at lines 373--373
 [][]  
  []
 
-[19
+[20
 
-] [20
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 379--379
+[][]  
+ []
+
+[21
+
+] [22
 
 ]
 \tf@nav=\write6
@@ -1643,14 +1657,14 @@ Overfull \hbox (0.4pt too wide) in paragraph at lines 326--326
 \tf@snm=\write8
 \openout8 = `LATEX.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 329.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 329.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 382.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 382.
  (./LATEX.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 329.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 329.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 382.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 382.
 
 
 Package rerunfilecheck Warning: File `LATEX.out' has changed.
@@ -1663,11 +1677,11 @@ Package rerunfilecheck Info: Checksums for `LATEX.out':
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 329.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 382.
  ) 
 Here is how much of TeX's memory you used:
- 23082 strings out of 493029
- 442315 string characters out of 6136234
+ 23086 strings out of 493029
+ 442353 string characters out of 6136234
  631817 words of memory out of 5000000
  25992 multiletter control sequences out of 15000+600000
  65577 words of font info for 82 fonts, out of 8000000 for 9000
@@ -1680,10 +1694,10 @@ c/dvips/lm/lm-mathsy.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r
 /public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
 hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on LATEX.pdf (20 pages, 61109 bytes).
+Output written on LATEX.pdf (22 pages, 64789 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
+ 183 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 51 named destinations out of 1000 (max. 500000)
  43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

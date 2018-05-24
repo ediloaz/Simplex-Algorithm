@@ -4,5 +4,5 @@
 \beamer@sectionintoc {2}{Problema original}{5}{0}{2}
 \beamer@sectionintoc {3}{Tabla inicial}{7}{0}{3}
 \beamer@sectionintoc {4}{Tablas intermedias}{10}{0}{4}
-\beamer@sectionintoc {5}{Tabla final}{15}{0}{5}
-\beamer@sectionintoc {6}{Soluci\IeC {\'o}n}{17}{0}{6}
+\beamer@sectionintoc {5}{Tabla final}{17}{0}{5}
+\beamer@sectionintoc {6}{Soluci\IeC {\'o}n}{19}{0}{6}

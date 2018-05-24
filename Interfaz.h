@@ -343,14 +343,44 @@ void AccionEjecutar(){
 //    FormatoCorrectoRestriccion(texto_rest8, texto_eq8);
 //    FormatoCorrectoRestriccion(texto_rest9, texto_eq9);
     
-    strcpy (s_nombre_variables[0], texto_var1);
-    strcpy (s_nombre_variables[1], texto_var2);
-    strcpy (s_nombre_variables[2], texto_var3);
-    strcpy (s_nombre_variables[3], texto_var4);
-    strcpy (s_nombre_variables[4], texto_var5);
-    strcpy (s_nombre_variables[5], texto_var6);
-    strcpy (s_nombre_variables[6], texto_var7);
-    strcpy (s_nombre_variables[7], texto_var8);
+//    printf("\n\n\n");
+//    printf("AAAAAAAAAAAAAAA:%s:AAAAAAAAAAAAAAA",texto_var1);
+//    printf("\n\n\n");
+    
+    if (texto_nombre_problema[7] == ' ') strcpy (texto_nombre_problema, "Problema sin nombre");
+    
+    if (texto_var1[7] == ' ') strcpy (s_nombre_variables[0], "x1");
+    else                      strcpy (s_nombre_variables[0], texto_var1);
+    
+    if (texto_var2[7] == ' ') strcpy (s_nombre_variables[1], "x2");
+    else                      strcpy (s_nombre_variables[1], texto_var2);
+    
+    if (texto_var3[7] == ' ') strcpy (s_nombre_variables[2], "x3");
+    else                      strcpy (s_nombre_variables[2], texto_var3);
+    
+    if (texto_var4[7] == ' ') strcpy (s_nombre_variables[3], "x4");
+    else                      strcpy (s_nombre_variables[3], texto_var4);
+    
+    if (texto_var5[7] == ' ') strcpy (s_nombre_variables[4], "x5");
+    else                      strcpy (s_nombre_variables[4], texto_var5);
+    
+    if (texto_var6[7] == ' ') strcpy (s_nombre_variables[5], "x6");
+    else                      strcpy (s_nombre_variables[5], texto_var6);
+    
+    if (texto_var7[7] == ' ') strcpy (s_nombre_variables[6], "x7");
+    else                      strcpy (s_nombre_variables[6], texto_var7);
+    
+    if (texto_var8[7] == ' ') strcpy (s_nombre_variables[7], "x8");
+    else                      strcpy (s_nombre_variables[7], texto_var8);
+    
+//    strcpy (s_nombre_variables[0], texto_var1);
+//    strcpy (s_nombre_variables[1], texto_var2);
+//    strcpy (s_nombre_variables[2], texto_var3);
+//    strcpy (s_nombre_variables[3], texto_var4);
+//    strcpy (s_nombre_variables[4], texto_var5);
+//    strcpy (s_nombre_variables[5], texto_var6);
+//    strcpy (s_nombre_variables[6], texto_var7);
+//    strcpy (s_nombre_variables[7], texto_var8);
     
     strcpy (s_constraints[0], texto_rest1);
     strcpy (s_constraints[1], texto_rest2);

@@ -286,10 +286,10 @@ void AlgoritmoSimplex(){
     int columna_escogida;
     
 
-//    CreateMatriz();
+    CreateMatriz();
 //    MatrizDePrueba1();        // Normal
 //    MatrizDePrueba2();          // Fábrica de La Agricultura (Con Ms) 
-    MatrizDePrueba3();          // Dakota Modificado (Para soluciones multiples)
+//    MatrizDePrueba3();          // Dakota Modificado (Para soluciones multiples)
 //    MatrizDePrueba4();
 //    MatrizDePrueba5();
 
@@ -299,7 +299,16 @@ void AlgoritmoSimplex(){
     
     if (ExistenMs()) CanonizarMs();
     
-    if (tablas_intermedias) Latex_Write("\\section{Tablas intermedias} \n");
+    if (tablas_intermedias) 
+    {printf("\n\n\n NO IF TABLAS INTERM \n\n\n");
+        Latex_Write("\\section{Tablas intermedias} \n");}
+    
+    if (ExisteColumnaCandidata()==true){
+        printf("\n\n\n EXISTE COLUMNA CANDIDATA \n\n\n");
+    }else{
+        printf("\n\n\n NO EXISTE COLUMNA CANDIDATA \n\n\n");
+    }
+    
     
     while (ExisteColumnaCandidata()){
         columna_escogida = ColumnaCandidata();
