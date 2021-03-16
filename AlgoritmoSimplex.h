@@ -8,7 +8,7 @@
 #include "DatosMatricesDePrueba.h"
 
 
-// Del archivo DatosMatricesDePrueba.h
+// From file DatosMatricesDePrueba.h
 void MatrizDePrueba1();
 void MatrizDePrueba2();
 void MatrizDePrueba3();
